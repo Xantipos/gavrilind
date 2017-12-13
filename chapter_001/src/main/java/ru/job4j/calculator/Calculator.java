@@ -1,6 +1,6 @@
 /**
  * Простейший калькулятор
- * сложение двух чисел
+ * сложение, вычитание, деление и умножение двух чисел 
  * @author Dmitriy Gavrilin (anubite@bk.ru)
  * @version $Id$
  * @since 0.1
@@ -10,17 +10,21 @@ public class Calculator {
     //добавим внутреннее поле видимо для вывода результата
     private double result;
 
-    public void add(double first, double second) {
+    public double add(double first, double second) {
         this.result=first+second;
+        return this.result;
     }
-    public void subtract(double first, double second) {
+    public double subtract(double first, double second) {
         this.result=first-second;
+        return this.result;
     }
-    public void div(double first, double second) {
+    public double div(double first, double second) {
         this.result=first/second;
+        return this.result;
     }
-    public void multiple(double first, double second) {
+    public double multiple(double first, double second) {
         this.result=first*second;
+        return this.result;
     }
     public double getResult() {
         return this.result;
