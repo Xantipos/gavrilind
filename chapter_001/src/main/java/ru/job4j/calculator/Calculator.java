@@ -10,16 +10,16 @@ public class Calculator {
     //добавим внутреннее поле видимо для вывода результата
     private double result;
 
-    void add(double first, double second) {
+    public void add(double first, double second) {
         this.result=first+second;
     }
-    void subtract(double first, double second) {
+    public void subtract(double first, double second) {
         this.result=first-second;
     }
-    void div(double first, double second) {
+    public void div(double first, double second) {
         this.result=first/second;
     }
-    void multiple(double first, double second) {
+    public void multiple(double first, double second) {
         this.result=first*second;
     }
     public double getResult() {
