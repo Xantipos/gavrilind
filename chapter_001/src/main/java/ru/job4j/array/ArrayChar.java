@@ -8,7 +8,7 @@ package ru.job4j.array;
 
 
 public class ArrayChar {
-    private char[] data;
+    private final char[] data;
 
     public ArrayChar(String line) {
         this.data = line.toCharArray();
@@ -20,8 +20,7 @@ public class ArrayChar {
         char[] value = prefix.toCharArray();
 
 
-        for (int index=0; index<=value.length-1; index++) {
-
+        for (int index = 0; index <= value.length-1; index++) {
             if (value[index] != data[index]) {
                 result = false;
                 break;
