@@ -32,7 +32,6 @@ public class ArrayChar {
             if (value[index] != data[index]) {
                 result = false;
             }
-            //break;
 
         }
 
