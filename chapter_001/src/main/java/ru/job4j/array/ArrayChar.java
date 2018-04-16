@@ -12,7 +12,7 @@ package ru.job4j.array;
  */
 public class ArrayChar {
     private char[] data;
-    
+
     public ArrayChar(String line) {
         this.data = line.toCharArray();
     }
@@ -27,15 +27,15 @@ public class ArrayChar {
         char[] value = prefix.toCharArray();
         // ?????????. ??? ?????? data ????? ?????? ???????? ?????????? ? value
 
+        for (int index=0; index<=value.length-1; index++) {
 
-if (data.length>=3){
+            if (value[index] != data[index]) {
+                result = false;
+            }
+            //break;
 
-if (value[0]==data[0]&value[1]==data[1]) {
-    return result;
-}
-else result =false;
-}
-else System.out.println("??????? ???????? ?????");
+        }
+
         return result;
     }
 }
