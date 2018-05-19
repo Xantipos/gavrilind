@@ -8,8 +8,6 @@ package ru.job4j.array;
 public class TwoSort {
 
     public static int[] sort(int[] array1, int[] array2) {
-
-
         int len_1 = array1.length, len_2 = array2.length;
         int a = 0, b = 0;
         int len = len_1 + len_2;
@@ -26,4 +24,4 @@ public class TwoSort {
         }
         return result;
     }
-        }
+}
