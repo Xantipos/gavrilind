@@ -56,12 +56,13 @@ public class Logic3T {
     public boolean hasGap() {
 
         boolean[][] cells = new boolean[table.length][table.length];
-
+        int ind=0;
         for (int i = 0; i<table.length; i++){
             for (int j = 0; j<table.length; j++){
-                cells[i][j] = table[i][j].markX();
+                if (table[i][j].hasMarkO() && table[i][j].markX()==false){ind++;}
             }
         }
+        if(ind==0){return false;}
         return true;
     }
 }
