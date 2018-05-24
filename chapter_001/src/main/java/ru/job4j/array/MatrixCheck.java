@@ -6,14 +6,15 @@ package ru.job4j.array;
 */
 public class MatrixCheck {
     public boolean mono(boolean[][] data) {
-        boolean result = false;
+        boolean result = true;
         int ind = 0;
         for (int i = 0; i < data.length; i++) {
             for (int j = 0; j < data.length; j++) {
-                if (data[0][0] = !data[i][j] && i == j) {ind++;}
+                if (data[0][0] = !data[i][j] && i == j) {result=false;
+                    if (result=false) {break;}
+                }
             }
         }
-        if (ind == 0) { result = true; }
         return result;
     }
 }
