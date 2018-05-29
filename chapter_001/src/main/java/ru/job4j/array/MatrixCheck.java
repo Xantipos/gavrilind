@@ -10,8 +10,11 @@ public class MatrixCheck {
         int ind = 0;
         for (int i = 0; i < data.length; i++) {
             for (int j = 0; j < data.length; j++) {
-                if (data[0][0] = !data[i][j] && i == j) {result=false;
-                    if (result=false) {break;}
+                if (data[0][0] = !data[i][j] && i == j) {
+                    result = false;
+                    if (result = false) {
+                        break;
+                    }
                 }
             }
         }
