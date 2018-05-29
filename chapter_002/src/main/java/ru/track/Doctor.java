@@ -1,4 +1,4 @@
-package ru.job4j.track;
+package ru.track;
 
 public class Doctor extends Profession {
     public Doctor(String name, String profession) {
@@ -9,5 +9,4 @@ public class Doctor extends Profession {
     public String heal() {
         return diagnose;
     }
-
 }
