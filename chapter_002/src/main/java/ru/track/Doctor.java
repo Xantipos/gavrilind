@@ -2,11 +2,13 @@ package ru.track;
 
 public class Doctor extends Profession {
     public Doctor(String name, String profession) {
-        this.name = "House M.D.";
-        this.profession = "Doctor";
+        super.name = "House M.D.";
+        super.profession = "Doctor";
+        String disease = "h1n1";
     }
-    String diagnose;
-    public String heal() {
+    String diagnose = "healthy";
+    public String heal(String disease) {
+
         return diagnose;
     }
 }
