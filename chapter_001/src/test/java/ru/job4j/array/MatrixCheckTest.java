@@ -52,4 +52,17 @@ public class MatrixCheckTest {
         boolean result = check.mono(input);
         assertThat(result, is(false));
     }
+
+    @Test
+    public void whenDataNotMonoByTrueThenFalse4na4new() {
+        MatrixCheck check = new MatrixCheck();
+        boolean[][] input = new boolean[][]{
+                {true, false, false, false},
+                {false, true, false, false},
+                {false,false, true, false},
+                {false, false, false, true}
+        };
+        boolean result = check.mono(input);
+        assertThat(result, is(false));
+    }
 }
