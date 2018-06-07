@@ -10,20 +10,16 @@ public class MatrixCheck {
         if (data[0][0] != data[data.length - 1][0]) {
             result = false;
         }
-         for (int i = 0; i < data.length; i++) {
+        for (int i = 0; i < data.length; i++) {
             for (int j = 0; j < data.length; j++) {
                 if (data[0][0] = !data[i][j] && i == j) {
                     result = false;
-                    if (result = false) {
-                        break;
-                    }
+                    break;
                 }
 
                 if (data[data.length - 1][0] != data[i][j] && (i + j) == data.length - 1) {
                     result = false;
-                    if (result = false) {
-                        break;
-                    }
+                    break;
                 }
             }
         }
