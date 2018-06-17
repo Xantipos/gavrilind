@@ -15,8 +15,8 @@
 <file name="C:\projects\gavrilind\chapter_001\src\main\java\ru\job4j\array\Matrix.java">
 </file>
 <file name="C:\projects\gavrilind\chapter_001\src\main\java\ru\job4j\array\MatrixCheck.java">
-<error line="13" column="32" severity="error" message="Inner assignments should be avoided." source="com.puppycrawl.tools.checkstyle.checks.coding.InnerAssignmentCheck"/>
-<error line="15" column="32" severity="error" message="Inner assignments should be avoided." source="com.puppycrawl.tools.checkstyle.checks.coding.InnerAssignmentCheck"/>
+<error line="11" column="135" severity="error" message="&apos;-&apos; is not preceded with whitespace." source="com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck"/>
+<error line="11" column="136" severity="error" message="&apos;-&apos; is not followed by whitespace." source="com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck"/>
 </file>
 <file name="C:\projects\gavrilind\chapter_001\src\main\java\ru\job4j\array\Square.java">
 </file>
@@ -220,6 +220,8 @@
 <error line="21" column="17" severity="error" message="Array brackets at illegal position." source="com.puppycrawl.tools.checkstyle.checks.ArrayTypeStyleCheck"/>
 </file>
 <file name="C:\projects\gavrilind\chapter_001\src\test\java\ru\job4j\array\MatrixCheckTest.java">
+<error line="38" column="24" severity="error" message="&apos;,&apos; is not followed by whitespace." source="com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAfterCheck"/>
+<error line="62" column="24" severity="error" message="&apos;,&apos; is not followed by whitespace." source="com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAfterCheck"/>
 </file>
 <file name="C:\projects\gavrilind\chapter_001\src\test\java\ru\job4j\array\MatrixTest.java">
 <error line="14" column="21" severity="error" message="Array brackets at illegal position." source="com.puppycrawl.tools.checkstyle.checks.ArrayTypeStyleCheck"/>
