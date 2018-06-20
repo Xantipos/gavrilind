@@ -1,4 +1,5 @@
 package ru.tracker;
+import org.junit.Assert;
 import org.junit.Test;
 
 import static org.hamcrest.core.Is.is;
@@ -36,12 +37,12 @@ public class TrackerTest {
         Item three = new Item("test3", "testDescription3", 12345L);
         tracker.add(three);
         tracker.delete(two.getId());
-        assertThat(tracker.findById(two.getId()), is("null"));
+        Assert.assertNull(tracker.findById(two.getId()));
     }
 
     @Test
     public void whenFindallNameThenReturnLenghtName() {
-        Item [] result = new Item[100];
+        Item[] result = new Item[100];
         Tracker tracker = new Tracker();
         Item first = new Item("test1", "testDescription", 123L);
         tracker.add(first);
@@ -59,7 +60,7 @@ public class TrackerTest {
 
     @Test
     public void whenFindByNameThenReturnItemsName() {
-        Item [] result = new Item[100];
+        Item[] result = new Item[100];
         Tracker tracker = new Tracker();
         Item one = new Item("test1", "testDescription", 123L);
         tracker.add(one);

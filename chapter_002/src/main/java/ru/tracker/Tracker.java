@@ -39,7 +39,7 @@ public class Tracker {
             Item[] akk = new Item[100];
             if (items[i].getId().equals(id)) {
                 System.arraycopy(items, 0, items, 0, i);
-                System.arraycopy(items, i+1,  items, 1, i);
+                System.arraycopy(items, i + 1,  items, 1, i);
                 return;
             }
         }
