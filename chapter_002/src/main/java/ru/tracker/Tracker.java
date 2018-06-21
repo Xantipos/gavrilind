@@ -46,10 +46,8 @@ public class Tracker {
     }
 
     public Item[] findAll() {
-        for (Item item : items) {
-            if (item == null) {
-                return   Arrays.copyOf(items, position);
-            }
+        if (position > 0) {
+            return   Arrays.copyOf(items, position);
         }
         return items;
     }
