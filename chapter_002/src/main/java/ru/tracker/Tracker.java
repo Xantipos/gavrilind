@@ -24,8 +24,7 @@ public class Tracker {
     }
 
     public void replace(String id, Item itemIn) {
-
-        for (int i = 0; i < items.length; i++) {
+        for (int i = 0; i < position; i++) {
             if (items[i].getId().equals(id)) {
                 itemIn.setId(id);
                 items[i] = itemIn;
@@ -35,22 +34,20 @@ public class Tracker {
     }
 
     public void delete(String id) {
-        for (int i = 0; i < items.length - 1; i++) {
+        for (int i = 0; i < position; i++) {
             Item[] akk = new Item[100];
             if (items[i].getId().equals(id)) {
                 System.arraycopy(items, 0, items, 0, i);
-                System.arraycopy(items, i + 1,  items, 1, i);
-                return;
+                System.arraycopy(items, i + 1,  items, i, position - i);
+                position--;
+                break;
             }
         }
     }
 
     public Item[] findAll() {
-        if (position > 0) {
-            return   Arrays.copyOf(items, position);
+        return   Arrays.copyOf(items, position);
         }
-        return items;
-    }
 
     public Item[] findByName(String key) {
         Item[] resultname = new Item[100];
@@ -68,7 +65,7 @@ public class Tracker {
         Item result = null;
         for (int i = 0; i < position; i++) {
             if (items[i].getId().equals(id)) {
-                return result = items[i];
+                result = items[i];
             }
         }
         return result;
