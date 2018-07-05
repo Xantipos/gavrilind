@@ -24,29 +24,28 @@ public class Tracker {
     }
 
     public boolean replace(String id, Item itemIn) {
-        boolean result = true;
+        boolean result = false;
         for (int i = 0; i < position; i++) {
             if (items[i].getId().equals(id)) {
                 itemIn.setId(id);
                 items[i] = itemIn;
+                result = true;
                 break;
             }
-            result = false;
         }
         return result;
     }
 
     public boolean delete(String id) {
-        boolean result = true;
+        boolean result = false;
         for (int i = 0; i < position; i++) {
-            Item[] akk = new Item[100];
             if (items[i].getId().equals(id)) {
                 System.arraycopy(items, 0, items, 0, i);
                 System.arraycopy(items, i + 1,  items, i, position - i);
                 position--;
+                result = true;
                 break;
             }
-            result = false;
         }
         return result;
     }
