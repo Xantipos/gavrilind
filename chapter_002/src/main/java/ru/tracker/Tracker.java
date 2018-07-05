@@ -23,17 +23,21 @@ public class Tracker {
         return String.valueOf(System.currentTimeMillis() + RN.nextInt());
     }
 
-    public void replace(String id, Item itemIn) {
+    public boolean replace(String id, Item itemIn) {
+        boolean result = true;
         for (int i = 0; i < position; i++) {
             if (items[i].getId().equals(id)) {
                 itemIn.setId(id);
                 items[i] = itemIn;
                 break;
             }
+            result = false;
         }
+        return result;
     }
 
-    public void delete(String id) {
+    public boolean delete(String id) {
+        boolean result = true;
         for (int i = 0; i < position; i++) {
             Item[] akk = new Item[100];
             if (items[i].getId().equals(id)) {
@@ -42,12 +46,14 @@ public class Tracker {
                 position--;
                 break;
             }
+            result = false;
         }
+        return result;
     }
 
     public Item[] findAll() {
         return   Arrays.copyOf(items, position);
-        }
+    }
 
     public Item[] findByName(String key) {
         Item[] resultname = new Item[100];
