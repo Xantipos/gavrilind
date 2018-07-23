@@ -1,8 +1,5 @@
-﻿package ru.pseudo;
+package ru.pseudo;
 
 public interface Shape {
-   public static String draw(){
-      String st = "figure";
-      return st;
-   }
+   String draw();
 }

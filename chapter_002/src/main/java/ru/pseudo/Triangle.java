@@ -1,9 +1,9 @@
-﻿package ru.pseudo;
+package ru.pseudo;
 
 public class Triangle implements Shape  {
 
 
-    public static String draw() {
+    public  String draw() {
         StringBuilder sb = new StringBuilder();
         sb.append("   + ");
         sb.append(" +   +");
@@ -13,7 +13,8 @@ public class Triangle implements Shape  {
     }
 
     public static void main(String[] args) {
-        String square = Triangle.draw();
+        Triangle triangle = new Triangle();
+        String square = triangle.draw();
         System.out.println(square);
     }
 

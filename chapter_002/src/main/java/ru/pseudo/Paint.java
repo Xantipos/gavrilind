@@ -1,4 +1,4 @@
-﻿package ru.pseudo;
+package ru.pseudo;
 
 
 /**
