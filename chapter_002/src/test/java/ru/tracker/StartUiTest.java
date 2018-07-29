@@ -74,11 +74,11 @@ public class StartUiTest {
         new StartUi(input, tracker).init();
         assertThat(tracker.findByName(item.getName())[0].getName(), is("test name"));
     }
+
     @Before
     public void loadOutput() {
         System.out.println("execute before method");
         System.setOut(new PrintStream(this.out));
-
     }
 
     @After
@@ -86,29 +86,29 @@ public class StartUiTest {
         System.setOut(this.stdout);
         System.out.println("execute after method");
     }
-            @Test
-            public void whenShowallTrackerHasBuffer() {
-                Tracker tracker = new Tracker();
-                Item item = new Item("test name", "desc", 1234L);
-                tracker.add(item);
-                Item item2 = new Item("test name2", "desc2", 1234L);
-                tracker.add(item2);
-                Item item3 = new Item("test name3", "desc3", 1234L);
-                tracker.add(item3);
-            Input input = new StubInput(new String[]{"1", "6"});
-            new StartUi(input, tracker).init();
-                assertThat(
-                        new String(this.out.toByteArray()),
-                        is(
-                                new StringBuilder()
-                                        .append("test name")
-                                        .append(System.lineSeparator())
-                                        .append("test name2")
-                                        .append(System.lineSeparator())
-                                        .append("test name3")
-                                        .append(System.lineSeparator())
-                                        .toString()
-                        )
-                );
-        }
-        }
+    @Test
+    public void whenShowallTrackerHasBuffer() {
+        Tracker tracker = new Tracker();
+        Item item = new Item("test name", "desc", 1234L);
+        tracker.add(item);
+        Item item2 = new Item("test name2", "desc2", 1234L);
+        tracker.add(item2);
+        Item item3 = new Item("test name3", "desc3", 1234L);
+        tracker.add(item3);
+        Input input = new StubInput(new String[]{"1", "6"});
+        new StartUi(input, tracker).init();
+        assertThat(
+                new String(this.out.toByteArray()),
+                is(
+                        new StringBuilder()
+                                .append("test name")
+                                .append(System.lineSeparator())
+                                .append("test name2")
+                                .append(System.lineSeparator())
+                                .append("test name3")
+                                .append(System.lineSeparator())
+                                .toString()
+                )
+        );
+    }
+}
