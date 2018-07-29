@@ -5,10 +5,10 @@ public class Board {
         int j;
         StringBuilder screen = new StringBuilder();
         String ln = System.lineSeparator();
-        for (i=0; i<height; i++) {
-            for (j=0; j<width; j++) {
+        for (i = 0; i < height; i++) {
+            for (j = 0; j < width; j++) {
 
-                if (i+j==0 || i+j==2 || i+j==4) {
+                if (i + j == 0 || i + j == 2 || i + j == 4) {
                  
                     screen.append("X");
                 } else {

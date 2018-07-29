@@ -11,7 +11,7 @@ public class SquareTest {
     //???????? ?????? counter ??? ????????
 
         Square array = new Square();
-        int result[];
+        int[] result;
 
             result = Square.calculate(4);
             assertThat(result[0], is(1));

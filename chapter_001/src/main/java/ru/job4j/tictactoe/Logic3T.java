@@ -14,24 +14,22 @@ public class Logic3T {
 
         boolean[][] cells = new boolean[table.length][table.length];
 
-        for (int i = 0; i<table.length; i++){
-            for (int j = 0; j<table.length; j++){
+        for (int i = 0; i < table.length; i++) {
+            for (int j = 0; j < table.length; j++) {
                 cells[i][j] = table[i][j].markX();
             }
         }
 
-
-
-        if (cells[0][0]==true & cells[1][1]==true & cells[2][2]==true) {
+        if (cells[0][0] == cells[1][1] == cells[2][2]) {
             return true;
         }
-        if (cells[0][0] == true & cells[1][0] == true & cells[2][0] == true){
+        if (cells[0][0] == cells[1][0] ==  cells[2][0]) {
             return true;
         }
-        if (cells[1][0] == true & cells[1][1] == true & cells[1][2] == true){
+        if (cells[1][0] == cells[1][1] == cells[1][2]) {
             return true;
         }
-        if (cells[2][0] == true & cells[2][1] == true & cells[2][2] == true){
+        if (cells[2][0] == cells[2][1] == cells[2][2]) {
             return true;
         }
         return false;
@@ -39,30 +37,32 @@ public class Logic3T {
 
     public boolean isWinnerO() {
         boolean[][] cells = new boolean[table.length][table.length];
-
-        for (int i = 0; i<table.length; i++){
-            for (int j = 0; j<table.length; j++){
+        boolean result = false;
+        for (int i = 0; i < table.length; i++) {
+            for (int j = 0; j < table.length; j++) {
                 cells[i][j] = table[i][j].markX();
             }
         }
-        if (cells[0][0] == false & cells[0][1]==false & cells[0][2]==false) {
-
-            return true;
+        if (cells[0][0] == cells[1][0] == cells[2][0]) {
+            result = true;
         }
-
-        return false;
+        return result;
     }
 
     public boolean hasGap() {
 
         boolean[][] cells = new boolean[table.length][table.length];
-        int ind=0;
-        for (int i = 0; i<table.length; i++){
-            for (int j = 0; j<table.length; j++){
-                if (table[i][j].hasMarkO() && table[i][j].markX()==false){ind++;}
+        int ind = 0;
+        for (int i = 0; i < table.length; i++) {
+            for (int j = 0; j < table.length; j++) {
+                if (table[i][j].hasMarkO() && !table[i][j].markX()) {
+                    ind++;
+                }
             }
         }
-        if(ind==0){return false;}
+        if (ind == 0) {
+            return false;
+        }
         return true;
     }
 }

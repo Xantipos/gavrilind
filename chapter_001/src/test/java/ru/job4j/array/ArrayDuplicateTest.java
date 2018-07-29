@@ -11,11 +11,11 @@ public class ArrayDuplicateTest {
 
 
 ArrayDuplicate delet = new ArrayDuplicate();
-String arr[] = new String[] {"Privet", "Mir","Privet", "Super", "Mir",};
-String out[] = new String[] {"Privet", "Mir", "Super"};
-String result[]=delet.remove(arr);
+String[] arr = new String[] {"Privet", "Mir", "Privet", "Super", "Mir"};
+String[] out = new String[] {"Privet", "Mir", "Super"};
+String[] result = delet.remove(arr);
 
- assertThat(result, is (out));
+ assertThat(result, is(out));
 
     }
 }

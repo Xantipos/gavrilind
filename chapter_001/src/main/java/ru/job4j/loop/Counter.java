@@ -13,7 +13,7 @@ public int add(int start, int finish) {
     int result = 0;
     for (int i = start; i <= finish; i++) {
         if (i % 2 == 0) {
-            result=result+i;
+            result = result + i;
             System.out.println(result);
         }
         //System.out.println(result);

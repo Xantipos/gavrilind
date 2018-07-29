@@ -65,12 +65,15 @@ public class Triangle {
     private boolean exist(double ab, double ac, double bc) {
         if (ab == bc + ac) {
             return false;
-        } else if (bc == ab + ac) {
-            return false;
-        } else if (ac == ab + bc) {
-            return false;
-        } else {
-            return true;
         }
+        if (bc == ab + ac) {
+            return false;
+            //} else if (ac == ab + bc) {
+            //return false;
+            //  } else {
+            //return true;
+        }
+        return true;
     }
+    //return true;
 }

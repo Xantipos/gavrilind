@@ -10,9 +10,9 @@ public class TurnTest {
     public void whenTurnArrayWithEvenAmountOfElementsThenTurnedArray() {
         //�������� ����� ����, ����������� ��������� ������� � ������ ������ ���������, �������� {2, 6, 1, 4}.
         Turn array = new Turn();
-        int result[];
-        int data[] = {1, 2, 3, 4, 5, 6};
-        int out[] = {6, 5, 4, 3, 2, 1};
+        int[] result;
+        int[] data = {1, 2, 3, 4, 5, 6};
+        int[] out = {6, 5, 4, 3, 2, 1};
             result = Turn.back(data);
         assertThat(result, is(out));
     }

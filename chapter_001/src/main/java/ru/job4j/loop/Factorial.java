@@ -1,25 +1,21 @@
 package ru.job4j.loop;
 
-/* Ïîäñ÷åò ôàêòîðèàëà, ìåòîäîì èñïîëüçóþùèì öèêë ôîð.
-àâòîð ...
-÷òî-òî òàì ÷òî-òàì
+/* ÐŸÐ¾Ð´ÑÑ‡ÐµÑ‚ Ñ„Ð°ÐºÑ‚Ð¾Ñ€Ð¸Ð°Ð»Ð°, Ð¼ÐµÑ‚Ð¾Ð´Ð¾Ð¼ Ð¸ÑÐ¿Ð¾Ð»ÑŒÐ·ÑƒÑŽÑ‰Ð¸Ð¼ Ñ†Ð¸ÐºÐ» Ñ„Ð¾Ñ€.
+Ð°Ð²Ñ‚Ð¾Ñ€ ...
+Ñ‡Ñ‚Ð¾-Ñ‚Ð¾ Ñ‚Ð°Ð¼ Ñ‡Ñ‚Ð¾-Ñ‚Ð°Ð¼
 */
 
-public class Factorial{
+public class Factorial {
 
+    public int calc(int n) {
 
-public int calc(int n) {
-
-int result=1;
-if (n>0);
-for (int i = 1; i <= n; i++)
-result=i*result;
-return result;
-}
-
-
-
-
-
+        int result = 1;
+        if (n > 0) {
+            for (int i = 1; i <= n; i++) {
+                result = i * result;
+            }
+        }
+        return result;
+    }
 }
 

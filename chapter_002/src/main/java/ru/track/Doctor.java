@@ -6,7 +6,7 @@ public class Doctor extends Profession {
         super(name, profession);
     }
 
-    public String heal(Patient patient) {
-        return new Diagnose("Желтуха");
+    public String heal() {
+        return "bobo";
     }
 }
