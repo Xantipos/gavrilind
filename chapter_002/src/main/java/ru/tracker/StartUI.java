@@ -1,4 +1,4 @@
-﻿package ru.tracker;
+package ru.tracker;
 
 /**
  * @version $Id$
@@ -13,7 +13,7 @@
 *Select:
  * Меню
  */
-public class StartUi {
+public class StartUI {
     /**
      * Константа меню для добавления новой заявки.
      */
@@ -42,7 +42,7 @@ public class StartUi {
      * @param input ввод данных.
      * @param tracker хранилище заявок.
      */
-    public StartUi(Input input, Tracker tracker) {
+    public StartUI(Input input, Tracker tracker) {
         this.input = input;
         this.tracker = tracker;
     }
@@ -71,12 +71,22 @@ public class StartUi {
               String desc = this.input.ask("Введите описание заявки :");
               Item itemin = new Item(name, desc, 1234L);
               tracker.replace(edition, itemin);
-            
-              } else if (DELETE.equals(answer)) {
+                if (tracker.replace(edition, itemin)) {
+                    System.out.println("Заявка изменена");
+                } else {
+                    System.out.println("Item not found");
+                }
+
+            } else if (DELETE.equals(answer)) {
               String deletion = this.input.ask("Введите номер заявки на удаление : ");
               tracker.delete(deletion);
-            
-             } else if (FINDID.equals(answer)) {
+                if (tracker.delete(deletion)) {
+                    System.out.println("Заявка изменена");
+                } else {
+                    System.out.println("Item not found");
+                }
+
+            } else if (FINDID.equals(answer)) {
               String find = this.input.ask("id поиск : ");
               Item finded = tracker.findById(find);
               System.out.println(finded.getName());
@@ -119,6 +129,6 @@ public class StartUi {
      * @param args
      */
     public static void main(String[] args) {
-        new StartUi(new ConsoleInput(), new Tracker()).init();
+        new StartUI(new ConsoleInput(), new Tracker()).init();
     }
 }
