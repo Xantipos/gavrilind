@@ -89,13 +89,23 @@ public class StartUI {
             } else if (FINDID.equals(answer)) {
               String find = this.input.ask("id поиск : ");
               Item finded = tracker.findById(find);
-              System.out.println(finded.getName());
+
+                if (finded == null) {
+                    System.out.println("Заявка не найдена");
+                } else {
+                    System.out.println(finded.getName());
+                }
+
 
             } else if (FINDNAME.equals(answer)) {
              String foundname = this.input.ask("name поиск : ");
              Item[] nameresult = tracker.findByName(foundname);
-             for (int i = 0; i < nameresult.length; i++) {
-                System.out.println(nameresult[i].getName());
+                if (nameresult.length == 0) {
+                    System.out.println("Заявка не найдена");
+                } else {
+                    for (int i = 0; i < nameresult.length; i++) {
+                        System.out.println(nameresult[i].getName());
+                    }
                 }
  } else if (EXIT.equals(answer)) {
                 exit = true;
@@ -115,7 +125,7 @@ public class StartUI {
     }
 
     private void showMenu() {
-        System.out.println("Меню.");
+        System.out.println("Меню");
         System.out.println("0 добавить заявку ");
         System.out.println("1 показать текущие заявки ");
         System.out.println("2 редактировать заявку номер:");

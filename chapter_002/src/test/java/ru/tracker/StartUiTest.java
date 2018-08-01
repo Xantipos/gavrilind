@@ -17,9 +17,37 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
 public class StartUiTest {
+
+    String st =                         new StringBuilder()
+            .append("Меню")
+            .append(System.lineSeparator())
+            .append("0 добавить заявку ")
+            .append(System.lineSeparator())
+            .append("1 показать текущие заявки ")
+            .append(System.lineSeparator())
+            .append("2 редактировать заявку номер:")
+            .append(System.lineSeparator())
+            .append("3 удалить заявку номер:")
+            .append(System.lineSeparator())
+            .append("4 поиск по id")
+            .append(System.lineSeparator())
+            .append("5 поиск по имени")
+            .append(System.lineSeparator())
+            .append("6 выход")
+            .append(System.lineSeparator())
+            .toString();
     private final PrintStream stdout = System.out;
     private final ByteArrayOutputStream out = new ByteArrayOutputStream();
 
+    @Before
+    public void loadOutput() {
+        System.setOut(new PrintStream(this.out));
+    }
+
+    @After
+    public void backOutput() {
+        System.setOut(this.stdout);
+    }
     @Test
     public void whenUserAddItemThenTrackerHasNewItemWithSameName() {
         Tracker tracker = new Tracker();
@@ -75,37 +103,8 @@ public class StartUiTest {
         assertThat(tracker.findByName(item.getName())[0].getName(), is("test name"));
     }
 
-    @Before
-    public void loadOutput() {
-        //System.out.println("execute before method");
-        System.setOut(new PrintStream(this.out));
-    }
-
-    @After
-    public void backOutput() {
-        System.setOut(this.stdout);
-       // System.out.println("execute after method");
-    }
     @Test
     public void whenShowallTrackerHasBuffer() {
-        String st =                         new StringBuilder()
-                .append("Меню")
-                .append(System.lineSeparator())
-                .append("0 добавить заявку ")
-                .append(System.lineSeparator())
-                .append("1 показать текущие заявки ")
-                .append(System.lineSeparator())
-                .append("2 редактировать заявку номер:")
-                .append(System.lineSeparator())
-                .append("3 удалить заявку номер:")
-                .append(System.lineSeparator())
-                .append("4 поиск по id")
-                .append(System.lineSeparator())
-                .append("5 поиск по имени")
-                .append(System.lineSeparator())
-                .append("6 выход")
-                .append(System.lineSeparator())
-                .toString();
 
         Tracker tracker = new Tracker();
         Item item = new Item("test name", "desc", 1234L);
@@ -126,6 +125,56 @@ public class StartUiTest {
                                 .append("test name2")
                                 .append(System.lineSeparator())
                                 .append("test name3")
+                                .append(System.lineSeparator())
+                                .append(st)
+                                .toString()
+                )
+        );
+    }
+
+    @Test
+    public void whenSearchIdConsole() {
+
+        Tracker tracker = new Tracker();
+        Item item = new Item("test name", "desc", 1234L);
+        tracker.add(item);
+        Item item2 = new Item("test name2", "desc2", 1234L);
+        tracker.add(item2);
+        Item item3 = new Item("test name3", "desc3", 1234L);
+        tracker.add(item3);
+        Input input = new StubInput(new String[]{"4", item2.getId(), "6"});
+        new StartUI(input, tracker).init();
+        assertThat(
+                new String(this.out.toByteArray()),
+                is(
+                        new StringBuilder()
+                                .append(st)
+                                .append(item2.getName())
+                                .append(System.lineSeparator())
+                                .append(st)
+                                .toString()
+                )
+        );
+    }
+
+    @Test
+    public void whenSearchNameConsole() {
+
+        Tracker tracker = new Tracker();
+        Item item = new Item("test name", "desc", 1234L);
+        tracker.add(item);
+        Item item2 = new Item("test name2", "desc2", 1234L);
+        tracker.add(item2);
+        Item item3 = new Item("test name3", "desc3", 1234L);
+        tracker.add(item3);
+        Input input = new StubInput(new String[]{"5", item3.getName(), "6"});
+        new StartUI(input, tracker).init();
+        assertThat(
+                new String(this.out.toByteArray()),
+                is(
+                        new StringBuilder()
+                                .append(st)
+                                .append(item3.getName())
                                 .append(System.lineSeparator())
                                 .append(st)
                                 .toString()
