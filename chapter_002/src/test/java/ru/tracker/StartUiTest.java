@@ -77,17 +77,36 @@ public class StartUiTest {
 
     @Before
     public void loadOutput() {
-        System.out.println("execute before method");
+        //System.out.println("execute before method");
         System.setOut(new PrintStream(this.out));
     }
 
     @After
     public void backOutput() {
         System.setOut(this.stdout);
-        System.out.println("execute after method");
+       // System.out.println("execute after method");
     }
     @Test
     public void whenShowallTrackerHasBuffer() {
+        String st =                         new StringBuilder()
+                .append("Меню")
+                .append(System.lineSeparator())
+                .append("0 добавить заявку ")
+                .append(System.lineSeparator())
+                .append("1 показать текущие заявки ")
+                .append(System.lineSeparator())
+                .append("2 редактировать заявку номер:")
+                .append(System.lineSeparator())
+                .append("3 удалить заявку номер:")
+                .append(System.lineSeparator())
+                .append("4 поиск по id")
+                .append(System.lineSeparator())
+                .append("5 поиск по имени")
+                .append(System.lineSeparator())
+                .append("6 выход")
+                .append(System.lineSeparator())
+                .toString();
+
         Tracker tracker = new Tracker();
         Item item = new Item("test name", "desc", 1234L);
         tracker.add(item);
@@ -101,44 +120,14 @@ public class StartUiTest {
                 new String(this.out.toByteArray()),
                 is(
                         new StringBuilder()
-                                .append("Меню")
-                                .append(System.lineSeparator())
-                                .append("0 добавить заявку ")
-                                .append(System.lineSeparator())
-                                .append("1 показать текущие заявки ")
-                                .append(System.lineSeparator())
-                                .append("2 редактировать заявку номер:")
-                                .append(System.lineSeparator())
-                                .append("3 удалить заявку номер:")
-                                .append(System.lineSeparator())
-                                .append("4 поиск по id")
-                                .append(System.lineSeparator())
-                                .append("5 поиск по имени")
-                                .append(System.lineSeparator())
-                                .append("6 выход")
-                                .append(System.lineSeparator())
+                                .append(st)
                                 .append("test name")
                                 .append(System.lineSeparator())
                                 .append("test name2")
                                 .append(System.lineSeparator())
                                 .append("test name3")
                                 .append(System.lineSeparator())
-                                .append("Меню")
-                                .append(System.lineSeparator())
-                                .append("0 добавить заявку ")
-                                .append(System.lineSeparator())
-                                .append("1 показать текущие заявки ")
-                                .append(System.lineSeparator())
-                                .append("2 редактировать заявку номер:")
-                                .append(System.lineSeparator())
-                                .append("3 удалить заявку номер:")
-                                .append(System.lineSeparator())
-                                .append("4 поиск по id")
-                                .append(System.lineSeparator())
-                                .append("5 поиск по имени")
-                                .append(System.lineSeparator())
-                                .append("6 выход")
-                                .append(System.lineSeparator())
+                                .append(st)
                                 .toString()
                 )
         );
