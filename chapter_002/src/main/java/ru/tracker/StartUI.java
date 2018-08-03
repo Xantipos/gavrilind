@@ -1,5 +1,7 @@
 package ru.tracker;
 
+import java.util.ArrayList;
+import java.util.List;
 /**
  * @version $Id$
  * @since 0.1
@@ -14,27 +16,9 @@ package ru.tracker;
  * Меню
  */
 public class StartUI {
-    /**
-     * Константа меню для добавления новой заявки.
-     */
-    private static final String ADD = "0";
-    private static final String SHOWALL = "1";
-    private static final String EDIT = "2";
-    private static final String DELETE = "3";
-    private static final String FINDID = "4";
-    private static final String FINDNAME = "5";
-    /**
-     * Константа для выхода из цикла.
-     */
-    private static final String EXIT = "6";
-    /**
-     * Получение данных от пользователя.
-     */
+
     private final Input input;
 
-    /**
-     * Хранилище заявок.
-     */
     private final Tracker tracker;
 
     /**
@@ -51,89 +35,22 @@ public class StartUI {
      * Основой цикл программы.
      */
     public void init() {
-        boolean exit = false;
-        while (!exit) {
-            this.showMenu();
-            String answer = this.input.ask("Введите пункт меню : ");
 
-            if (ADD.equals(answer)) {
-                this.createItem();
-            } else if (SHOWALL.equals(answer)) {
-               Item[] showresult = tracker.findAll();
-               for (int i = 0; i < showresult.length; i++) {
-                System.out.println(showresult[i].getName());
-                }
-           
-              } else if (EDIT.equals(answer)) {
-              String edition = this.input.ask("Введите номер редактируемой заявки : ");
-              System.out.println("------------ Новые данные по заявке --------------");
-              String name = this.input.ask("Введите имя заявки :");
-              String desc = this.input.ask("Введите описание заявки :");
-              Item itemin = new Item(name, desc, 1234L);
-              tracker.replace(edition, itemin);
-                if (tracker.replace(edition, itemin)) {
-                    System.out.println("Заявка изменена");
-                } else {
-                    System.out.println("Item not found");
-                }
-
-            } else if (DELETE.equals(answer)) {
-              String deletion = this.input.ask("Введите номер заявки на удаление : ");
-              tracker.delete(deletion);
-                if (tracker.delete(deletion)) {
-                    System.out.println("Заявка изменена");
-                } else {
-                    System.out.println("Item not found");
-                }
-
-            } else if (FINDID.equals(answer)) {
-              String find = this.input.ask("id поиск : ");
-              Item finded = tracker.findById(find);
-
-                if (finded == null) {
-                    System.out.println("Заявка не найдена");
-                } else {
-                    System.out.println(finded.getName());
-                }
-
-
-            } else if (FINDNAME.equals(answer)) {
-             String foundname = this.input.ask("name поиск : ");
-             Item[] nameresult = tracker.findByName(foundname);
-                if (nameresult.length == 0) {
-                    System.out.println("Заявка не найдена");
-                } else {
-                    for (int i = 0; i < nameresult.length; i++) {
-                        System.out.println(nameresult[i].getName());
-                    }
-                }
- } else if (EXIT.equals(answer)) {
-                exit = true;
+            MenuTracker menu = new MenuTracker(this.input, this.tracker);
+            List<Integer> range = new ArrayList<>();
+            menu.fillActions();
+            for (int i = 0; i < menu.getActionsLentgh(); i++) {
+                range.add(i);
             }
+            do {
+                menu.show();
+                String answer = this.input.ask("select:");
+                int sel = Integer.valueOf(answer);
+                if (sel == 6){break;};
+                menu.select(sel);
+            } while (!"y".equals(this.input.ask("Exit?(y): ")));
         }
-    }
-    /**
-     * Метод реализует добавление новый заявки в хранилище.
-     */
-    private void createItem() {
-        System.out.println("------------ Добавление новой заявки --------------");
-        String name = this.input.ask("Введите имя заявки :");
-        String desc = this.input.ask("Введите описание заявки :");
-        Item item = new Item(name, desc, 1234L);
-        this.tracker.add(item);
-        System.out.println("----------- Новая заявка с getId : " + item.getId() + "-----------");
-    }
 
-    private void showMenu() {
-        System.out.println("Меню");
-        System.out.println("0 добавить заявку ");
-        System.out.println("1 показать текущие заявки ");
-        System.out.println("2 редактировать заявку номер:");
-        System.out.println("3 удалить заявку номер:");
-        System.out.println("4 поиск по id");
-        System.out.println("5 поиск по имени");
-        System.out.println("6 выход");
-    }
     /**
      * Запускт программы.
      * @param args
