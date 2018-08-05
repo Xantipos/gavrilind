@@ -1,5 +1,6 @@
 package ru.tracker;
 
+
 import java.util.ArrayList;
 import java.util.List;
 /**
@@ -21,6 +22,8 @@ public class StartUI {
 
     private final Tracker tracker;
 
+    public boolean work = true;
+
     /**
      * Конструтор инициализирующий поля.
      * @param input ввод данных.
@@ -37,19 +40,21 @@ public class StartUI {
     public void init() {
 
             MenuTracker menu = new MenuTracker(this.input, this.tracker);
-            List<Integer> range = new ArrayList<>();
-            menu.fillActions();
-            for (int i = 0; i < menu.getActionsLentgh(); i++) {
-                range.add(i);
-            }
+            menu.fillActions(this);
+            int[] range = menu.ArrayKey();
             do {
                 menu.show();
                 String answer = this.input.ask("select:");
                 int sel = Integer.valueOf(answer);
-                if (sel == 6){break;};
+               // if (sel == 6){work = false;};
                 menu.select(sel);
-            } while (!"y".equals(this.input.ask("Exit?(y): ")));
+           // } while (!"y".equals(this.input.ask("Exit?(y): ")));
+                 } while (work == true);
         }
+
+    public void stop() {
+        this.work = false;
+    }
 
     /**
      * Запускт программы.

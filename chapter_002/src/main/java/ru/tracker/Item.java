@@ -34,7 +34,20 @@ public class Item {
         return this.id;
     }
 
+    public String GetDone(){
+        String done = new StringBuilder()
+
+                .append("------------ New Item with Id : " + getId())
+                .append(System.lineSeparator())
+                .append("------------ New Item with Name : " + getName())
+                .append(System.lineSeparator())
+                .append("------------ New Item with Name : " + getDescription())
+                .toString();
+        return done;}
+
     public void setId(String id) {
         this.id = id;
     }
+
+
 }
