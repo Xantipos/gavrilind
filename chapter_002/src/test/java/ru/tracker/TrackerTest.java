@@ -1,7 +1,8 @@
 package ru.tracker;
 import org.junit.Assert;
 import org.junit.Test;
-
+import ru.tracker.storage.Tracker;
+import ru.tracker.model.Item;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 

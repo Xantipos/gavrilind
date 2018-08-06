@@ -15,6 +15,10 @@ import org.junit.Before;
 import org.junit.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import ru.tracker.storage.Tracker;
+import ru.tracker.model.Item;
+import ru.tracker.input.Input;
+import ru.tracker.input.StubInput;
 
 public class StartUiTest {
 

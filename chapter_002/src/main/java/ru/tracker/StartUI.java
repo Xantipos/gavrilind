@@ -49,9 +49,7 @@ public class StartUI {
                 menu.show();
                 String answer = this.input.ask("select:");
                 int sel = Integer.valueOf(answer);
-               // if (sel == 6){work = false;};
                 menu.select(sel);
-           // } while (!"y".equals(this.input.ask("Exit?(y): ")));
                  } while (work == true);
         }
 
@@ -60,7 +58,7 @@ public class StartUI {
     }
 
     /**
-     * Запускт программы.
+     * Запуск программы.
      * @param args
      */
     public static void main(String[] args) {
