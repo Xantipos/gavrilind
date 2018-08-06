@@ -1,7 +1,10 @@
-package ru.tracker;
+package ru.tracker.actions;
 
 
-public class DeleteItem implements UserAction  {
+import ru.tracker.input.Input;
+import ru.tracker.storage.Tracker;
+
+public class DeleteItem implements UserAction {
   @Override
     public int key() {
         return 3;

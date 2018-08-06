@@ -1,6 +1,8 @@
+package ru.tracker.actions;
 
-package ru.tracker;
 
+import ru.tracker.storage.Tracker;
+import ru.tracker.input.Input;
 
 public interface UserAction {
     /**

@@ -1,4 +1,4 @@
-package ru.tracker;
+package ru.tracker.model;
 
 public class Item {
     public String id;

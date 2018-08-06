@@ -1,7 +1,11 @@
-package ru.tracker;
+package ru.tracker.actions;
 
 
-public class ExitProgram implements UserAction  {
+import ru.tracker.input.Input;
+import ru.tracker.StartUI;
+import ru.tracker.storage.Tracker;
+
+public class ExitProgram implements UserAction {
 private StartUI ui;
 
   ExitProgram(StartUI ui) {

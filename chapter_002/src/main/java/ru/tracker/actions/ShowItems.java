@@ -1,5 +1,9 @@
-package ru.tracker;
+package ru.tracker.actions;
 
+
+import ru.tracker.input.Input;
+import ru.tracker.model.Item;
+import ru.tracker.storage.Tracker;
 
 public class ShowItems implements UserAction {
     @Override

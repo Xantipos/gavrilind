@@ -1,4 +1,8 @@
-package ru.tracker;
+package ru.tracker.actions;
+
+import ru.tracker.StartUI;
+import ru.tracker.storage.Tracker;
+import ru.tracker.input.Input;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -52,13 +56,13 @@ public class MenuTracker {
      */
 
     public void fillActions(StartUI ui) {
-        this.actions.add(new ru.tracker.AddItem());
-        this.actions.add(new ru.tracker.ShowItems());
-        this.actions.add(new ru.tracker.EditItem());
-        this.actions.add(new ru.tracker.DeleteItem());
-        this.actions.add(new ru.tracker.FindItemById());
-        this.actions.add(new ru.tracker.FindItemsByName());
-        this.actions.add(new ru.tracker.ExitProgram(ui));
+        this.actions.add(new AddItem());
+        this.actions.add(new ShowItems());
+        this.actions.add(new EditItem());
+        this.actions.add(new DeleteItem());
+        this.actions.add(new FindItemById());
+        this.actions.add(new FindItemsByName());
+        this.actions.add(new ExitProgram(ui));
     }
 
     /**

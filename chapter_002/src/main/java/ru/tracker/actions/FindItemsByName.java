@@ -1,7 +1,11 @@
-package ru.tracker;
+package ru.tracker.actions;
 
 
-public class FindItemsByName implements UserAction  {
+import ru.tracker.input.Input;
+import ru.tracker.model.Item;
+import ru.tracker.storage.Tracker;
+
+public class FindItemsByName implements UserAction {
   @Override
     public int key() {
         return 5;

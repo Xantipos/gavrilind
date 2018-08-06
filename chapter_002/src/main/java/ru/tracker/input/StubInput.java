@@ -1,4 +1,5 @@
-package ru.tracker;
+package ru.tracker.input;
+
 
 public class StubInput implements Input {
     /**
