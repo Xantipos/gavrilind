@@ -23,21 +23,19 @@ import ru.tracker.input.StubInput;
 public class StartUiTest {
 
     String st =                         new StringBuilder()
-            .append("Меню")
+            .append("0 Add new Item.")
             .append(System.lineSeparator())
-            .append("0 добавить заявку ")
+            .append("1 Show all Items.")
             .append(System.lineSeparator())
-            .append("1 показать текущие заявки ")
+            .append("2 Edit item.")
             .append(System.lineSeparator())
-            .append("2 редактировать заявку номер:")
+            .append("3 Delete Item.")
             .append(System.lineSeparator())
-            .append("3 удалить заявку номер:")
+            .append("4 Find item by Id.")
             .append(System.lineSeparator())
-            .append("4 поиск по id")
+            .append("5 Find items by name.")
             .append(System.lineSeparator())
-            .append("5 поиск по имени")
-            .append(System.lineSeparator())
-            .append("6 выход")
+            .append("6 Exit Program.")
             .append(System.lineSeparator())
             .toString();
     private final PrintStream stdout = System.out;
