@@ -17,7 +17,7 @@ public class AddItem implements UserAction {
         String desc = input.ask("Please, provide item description:");
         Item item = new Item(name, desc, 1234L);
         tracker.add(item);
-        System.out.println(item.GetDone());
+        System.out.println(item.getDone());
     }
 
     @Override

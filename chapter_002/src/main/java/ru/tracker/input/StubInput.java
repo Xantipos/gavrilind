@@ -22,6 +22,10 @@ public class StubInput implements Input {
     public StubInput(final String[] value) {
         this.value = value;
     }
+    public int ask(String quetion, int[]range) {
+        int value = -1;
+        return value;
+    }
 
     /**
      * Давайте рассмотрим, как работает этот метод.

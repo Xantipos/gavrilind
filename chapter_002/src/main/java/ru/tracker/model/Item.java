@@ -34,7 +34,7 @@ public class Item {
         return this.id;
     }
 
-    public String GetDone(){
+    public String getDone() {
         String done = new StringBuilder()
 
                 .append("------------ New Item with Id : " + getId())
@@ -43,7 +43,8 @@ public class Item {
                 .append(System.lineSeparator())
                 .append("------------ New Item with Name : " + getDescription())
                 .toString();
-        return done;}
+        return done;
+    }
 
     public void setId(String id) {
         this.id = id;

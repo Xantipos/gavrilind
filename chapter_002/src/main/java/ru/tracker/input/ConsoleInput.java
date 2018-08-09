@@ -10,4 +10,20 @@ public class ConsoleInput implements Input {
         System.out.print(quetion);
         return scanner.nextLine();
     }
+
+    public int ask(String quetion, int[]range) {
+        int key = Integer.valueOf(this.ask(quetion));
+        boolean exist = false;
+        for (int value : range) {
+            if (value == key) {
+                exist = true;
+                break;
+            }
+        }
+        if (exist) {
+            return key;
+        } else {
+            throw new MenuOutException();
+        }
+    }
 }

@@ -44,7 +44,7 @@ public class MenuTracker {
     }
 
    // Метод заполняет массив ключами
-    public int[] ArrayKey() {
+    public int[] arrayKey() {
         int[] range = new int[getActionsLentgh()];
         for (int i = 0; i < getActionsLentgh(); i++) {
             range[i] = i;
