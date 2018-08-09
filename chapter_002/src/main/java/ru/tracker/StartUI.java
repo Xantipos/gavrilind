@@ -4,6 +4,7 @@ package ru.tracker;
 import ru.tracker.actions.MenuTracker;
 import ru.tracker.input.ConsoleInput;
 import ru.tracker.input.Input;
+import ru.tracker.input.ValidateInput;
 import ru.tracker.storage.Tracker;
 
 /**
@@ -44,13 +45,11 @@ public class StartUI {
 
             MenuTracker menu = new MenuTracker(this.input, this.tracker);
             menu.fillActions(this);
-            int[] range = menu.ArrayKey();
+            int[] range = menu.arrayKey();
             do {
                 menu.show();
-                String answer = this.input.ask("select:");
-                int sel = Integer.valueOf(answer);
-                menu.select(sel);
-                 } while (work == true);
+                menu.select(input.ask("select:", range));
+                 } while (work);
         }
 
     public void stop() {
@@ -62,6 +61,6 @@ public class StartUI {
      * @param args
      */
     public static void main(String[] args) {
-        new StartUI(new ConsoleInput(), new Tracker()).init();
+        new StartUI(new ValidateInput(), new Tracker()).init();
     }
 }
