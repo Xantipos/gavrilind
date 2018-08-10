@@ -41,7 +41,7 @@ public class Item {
                 .append(System.lineSeparator())
                 .append("------------ New Item with Name : " + getName())
                 .append(System.lineSeparator())
-                .append("------------ New Item with Name : " + getDescription())
+                .append("------------ New Item with Description : " + getDescription())
                 .toString();
         return done;
     }
