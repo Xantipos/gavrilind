@@ -42,8 +42,7 @@ public class StartUiTest {
             .toString();
     private final PrintStream stdout = System.out;
     private final ByteArrayOutputStream out = new ByteArrayOutputStream();
-   // private int[] range = new int[]{0,1,2,3,4,5,6,7};
-    /**
+
     @Before
     public void loadOutput() {
         System.setOut(new PrintStream(this.out));
@@ -53,7 +52,7 @@ public class StartUiTest {
     public void backOutput() {
         System.setOut(this.stdout);
     }
-     */
+
     @Test
     public void whenUserAddItemThenTrackerHasNewItemWithSameName() {
         Tracker tracker = new Tracker();
@@ -62,7 +61,7 @@ public class StartUiTest {
         assertThat(tracker.findAll()[0].getName(), is("test name"));
     }
 
-/**
+
     @Test
     public void whenUpdateThenTrackerHasUpdatedValue() {
         Tracker tracker = new Tracker();
@@ -188,7 +187,7 @@ public class StartUiTest {
                 )
         );
     }
- */
+
 }
 
 

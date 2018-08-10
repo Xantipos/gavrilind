@@ -11,8 +11,6 @@ public class StubInput implements Input {
 
     public String ask(String question) { return this.value[this.position++]; }
     public int ask(String quetion, int[] range) {
-        int key;
-        return key = this.position++;
-        //throw new UnsupportedOperationException("nifiga");
+        return Integer.valueOf(value[position++]);
     }
 }
