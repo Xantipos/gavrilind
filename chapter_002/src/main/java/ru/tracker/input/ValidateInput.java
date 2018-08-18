@@ -5,7 +5,6 @@ import java.util.*;
 public class ValidateInput implements Input {
 
     private final Input input;
-    public Validator validator = new Validator(new ConsoleInput());
 
     public ValidateInput(final Input input) {
         this.input = input;
@@ -17,11 +16,6 @@ public class ValidateInput implements Input {
     }
 
     public int ask(String question, int[] range){
-        if(validator.validate(question,range))
-            throw new NumberFormatException("Введите верное значение");
-            int value = this.input.ask(question, range);
-            return  value;
-        /**
         boolean invalid = true;
         int value = -1;
         do {
@@ -35,6 +29,5 @@ public class ValidateInput implements Input {
             }
         } while (invalid);
         return  value;
-         */
     }
 }
