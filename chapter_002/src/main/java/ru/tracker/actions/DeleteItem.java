@@ -4,24 +4,19 @@ package ru.tracker.actions;
 import ru.tracker.input.Input;
 import ru.tracker.storage.Tracker;
 
-public class DeleteItem implements UserAction {
-  @Override
-    public int key() {
-        return 3;
+class DeleteItem extends BaseAction {
+
+    public DeleteItem(int key, String name) {
+        super(key, name);
     }
 
     @Override
     public void execute(Input input, Tracker tracker) {
      String deletion = input.ask("Введите номер заявки на удаление : ");
                 if (tracker.delete(deletion)) {
-                    System.out.println("Заявка изменена");
+                    System.out.println("Заявка удалена");
                 } else {
                     System.out.println("Item not found");
                 }  
-    }
-
-    @Override
-    public String info() {
-        return "3 Delete Item.";
     }
 }

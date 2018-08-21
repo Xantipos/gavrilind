@@ -38,9 +38,9 @@ public class ValidateInputTest {
     @Test
     public void whenInvalidInput() {
         ValidateInput input = new ValidateInput(
-                new StubInput(new String[] {"i","1"})
+                new StubInput(new String[] {"i", "1"})
         );
-        input.ask("Enter", new int[] {0,1,2,3,4,5});
+        input.ask("Enter", new int[] {0, 1, 2, 3, 4, 5});
         assertThat(
                 this.mem.toString(),
                 is(

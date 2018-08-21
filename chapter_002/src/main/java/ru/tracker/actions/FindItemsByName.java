@@ -5,11 +5,12 @@ import ru.tracker.input.Input;
 import ru.tracker.model.Item;
 import ru.tracker.storage.Tracker;
 
-public class FindItemsByName implements UserAction {
-  @Override
-    public int key() {
-        return 5;
-    }
+class FindItemsByName extends BaseAction {
+
+public FindItemsByName(int key, String name) {
+        super(key, name);
+        }
+
 
     @Override
     public void execute(Input input, Tracker tracker) {
@@ -24,8 +25,4 @@ public class FindItemsByName implements UserAction {
                 }
     }
 
-    @Override
-    public String info() {
-        return "5 Find items by name.";
-    }
 }

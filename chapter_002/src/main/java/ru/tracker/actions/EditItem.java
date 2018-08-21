@@ -5,10 +5,10 @@ import ru.tracker.input.Input;
 import ru.tracker.model.Item;
 import ru.tracker.storage.Tracker;
 
-public class EditItem implements UserAction {
- @Override
-    public int key() {
-        return 2;
+class EditItem extends BaseAction {
+
+    public EditItem(int key, String name) {
+        super(key, name);
     }
 
     @Override
@@ -25,8 +25,4 @@ public class EditItem implements UserAction {
                 }
     }
 
-    @Override
-    public String info() {
-        return "2 Edit item.";
-    }
 }
