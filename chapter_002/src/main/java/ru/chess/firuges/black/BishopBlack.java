@@ -1,9 +1,7 @@
 package ru.chess.firuges.black;
-
 import ru.chess.Logic;
 import ru.chess.firuges.Cell;
 import ru.chess.firuges.Figure;
-
 /**
  *
  * @author Petr Arsentev (parsentev@yandex.ru)
@@ -12,37 +10,32 @@ import ru.chess.firuges.Figure;
  */
 public class BishopBlack implements Figure {
     private final Cell position;
-
     public BishopBlack(final Cell position) {
         this.position = position;
     }
-
     @Override
     public Cell position() {
         return this.position;
     }
-
     @Override
     public Cell[] way(Cell source, Cell dest) {
 
-        int diffY = Math.abs(dest.y - source.y);
-        int diffX = Math.abs(dest.x - source.x);
-        Cell[] steps = new Cell[diffY];
-
-        if (diffY == diffX) {
-            for (int i = 0; i != diffY; i++) {
-                if (dest.y - source.y > 0 && dest.x - source.x >0) {
-                steps[i] = new Cell(source.x + i, source.y + i);
-
+        int len = Math.abs(source.x - dest.x);
+        Cell[] steps = new Cell[len];
+        int diffX = source.x - dest.x;
+        int diffY = source.y - dest.y;
+        if (Math.abs(diffY) == Math.abs(diffX)) {
+            if (diffX < 0 && diffY < 0) {
+                for (int i = 1; i < len - 1; i++) {
+           // steps[i] = Cell.(source.x + 1, source.y +1); вот как это присвоить.
+                }
             }
-
+            steps[len] = dest;
             return steps;
-
         }
-
-
-    @Override
-    public Figure copy(Cell dest) {
-        return new BishopBlack(dest);
     }
-}
+            @Override
+            public Figure copy(Cell dest) {
+                return new BishopBlack(dest);
+            }
+        }
