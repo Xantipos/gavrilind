@@ -24,17 +24,16 @@ import static org.junit.Assert.assertThat;
 public class BishopBlackTest {
     @Test
     public void whenBishopDiag() {
+        Logic logic = new Logic();
+        logic.add(new BishopBlack(Cell.C8));
+        //assertThat (logic.move(Cell.C8, Cell.F5), is (true));
         BishopBlack slon = new BishopBlack(Cell.C8);
-        Cell[] result = new Cell[8];
-        Cell target = Cell.H3;
+        Cell[] result = new Cell[0];
+        Cell target = Cell.F5;
         result = slon.way(Cell.C8,target);
-        int x = result[result.length - 1].getX();
-        int y = result[result.length - 1].getY();
-        System.out.print(x);
-        System.out.print(y);
 
         assertThat (result[result.length - 1].equals(target), is (true));
-        assertThat(result[result.length - 1].getX(), is(target.getX()));
-        assertThat(result[result.length - 1].getY(), is(target.getY()));
+       // assertThat(result[result.length - 1].getX(), is(target.getX()));
+        //assertThat(result[result.length - 1].getY(), is(target.getY()));
     }
 }
