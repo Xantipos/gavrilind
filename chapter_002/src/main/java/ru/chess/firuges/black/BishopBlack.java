@@ -1,10 +1,12 @@
 package ru.chess.firuges.black;
+import ru.chess.ChessOutException;
 import ru.chess.Logic;
 import ru.chess.firuges.Cell;
 import ru.chess.firuges.Figure;
+import java.util.Arrays;
 /**
  *
- * @author Petr Arsentev (parsentev@yandex.ru)
+ * @author DmGavrilin(anubite@bk.ru)
  * @version $Id$
  * @since 0.1
  */
@@ -22,45 +24,44 @@ public class BishopBlack implements Figure {
         int diffX = source.x - dest.x;
         int diffY = source.y - dest.y;
         int len = 0;
+        Cell[] way = new Cell[] {source};
 
         if (Math.abs(diffY) == Math.abs(diffX)) {
             len = Math.abs(diffX) + 1;
+        } else {
+            throw new ChessOutException();
         }
         Cell[] steps = new Cell[len];
         if (Math.abs(diffY) == Math.abs(diffX)) {
 
             if (diffX < 0 && diffY < 0) {
                 int counter = 0;
-                for (int i = 0; i < len; i++) {
-                    counter = 8*(source.x + i) + (source.y +i);
+                for (int i = 1; i < len; i++) {
+                    counter = 8 * (source.x + i) + (source.y + i);
                     steps[i] = Cell.values()[counter];
                 }
             } else if (diffX > 0 && diffY > 0) {
                 int counter = 0;
-                for (int i = 0; i < len; i++) {
-                    counter = 8*(source.x - i) + (source.y - i);
-                    //System.out.println("- -");
-                   // System.out.println("counter"+ counter);
+                for (int i = 1; i < len; i++) {
+                    counter = 8 * (source.x - i) + (source.y - i);
                     steps[i] = Cell.values()[counter];
                 }
             } else if (diffX > 0 && diffY < 0) {
                 int counter = 0;
-                for (int i = 0; i < len; i++) {
-                    counter = 8*(source.x - i) + (source.y + i);
-                   // System.out.println("- +");
-                   // System.out.println("counter"+ counter);
+                for (int i = 1; i < len; i++) {
+                    counter = 8 * (source.x - i) + (source.y + i);
                     steps[i] = Cell.values()[counter];
                 }
             } else if (diffX < 0 && diffY > 0) {
                 int counter = 0;
-                for (int i = 0; i < len; i++) {
-                    counter = 8*(source.x + i) + (source.y - i);
-                  //  System.out.println("+ -"+ i);
-                  //  System.out.println("counter"+ counter);
+                for (int i = 1; i < len; i++) {
+                    counter = 8 * (source.x + i) + (source.y - i);
                     steps[i] = Cell.values()[counter];
                 }
             }
-        } return steps;
+           way = Arrays.copyOf(steps, steps.length);
+        }
+        return way;
     }
             @Override
             public Figure copy(Cell dest) {

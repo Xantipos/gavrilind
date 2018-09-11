@@ -1,5 +1,7 @@
 package ru.chess.firuges.black;
 
+import ru.chess.ChessOutException;
+import ru.chess.Logic;
 import ru.chess.firuges.Cell;
 import ru.chess.firuges.Figure;
 
@@ -23,7 +25,27 @@ public class QeenBlack implements Figure {
 
     @Override
     public Cell[] way(Cell source, Cell dest) {
-        return new Cell[] { dest };
+        Cell[] way = new Cell[0];
+        int diffX = source.x - dest.x;
+        int diffY = source.y - dest.y;
+        if (diffX == 0 || diffY == 0) {
+            Logic logic = new Logic();
+            RookBlack lada = new RookBlack(source);
+            logic.add(lada);
+            boolean rookmove = logic.move(source, dest);
+        } else if (Math.abs(diffY) == Math.abs(diffX)) {
+            Logic logic = new Logic();
+            BishopBlack slon = new BishopBlack(source);
+            logic.add(slon);
+            boolean slonmove = logic.move(source, dest);
+            if (slonmove) {
+                way = slon.way(source, dest);
+            }
+        } else {
+            throw new ChessOutException();
+        }
+
+        return way;
     }
 
     @Override

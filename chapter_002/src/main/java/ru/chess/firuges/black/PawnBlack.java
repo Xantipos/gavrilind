@@ -1,5 +1,6 @@
 package ru.chess.firuges.black;
 
+import ru.chess.ChessOutException;
 import ru.chess.firuges.Cell;
 import ru.chess.firuges.Figure;
 
@@ -25,7 +26,9 @@ public class PawnBlack implements Figure {
     public Cell[] way(Cell source, Cell dest) {
         Cell[] steps = new Cell[0];
         if (source.y == dest.y + 1 && source.x == dest.x) {
-            steps = new Cell[] { dest };
+            steps = new Cell[] {dest};
+        } else {
+            throw new ChessOutException();
         }
         return steps;
     }
