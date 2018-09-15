@@ -24,47 +24,27 @@ public class BishopBlack implements Figure {
         int diffX = source.x - dest.x;
         int diffY = source.y - dest.y;
         int len = 0;
-        Cell[] way = new Cell[] {source};
 
-        if (Math.abs(diffY) == Math.abs(diffX)) {
-            len = Math.abs(diffX) + 1;
-        } else {
+        if (Math.abs(diffY) != Math.abs(diffX)) {
             throw new ChessOutException();
+        } else {
+            len = Math.abs(diffX) + 1;
         }
+        int deltaX = Integer.compare(source.x, dest.x);
+        int deltaY = Integer.compare(source.y, dest.y);
         Cell[] steps = new Cell[len];
-        if (Math.abs(diffY) == Math.abs(diffX)) {
+        for (int i = 1; i < len; i++) {
+            for (int j = 0; j < 63; j++) {
+                if(source.x - deltaX * i == Cell.values()[j].x & source.y - deltaY * i == Cell.values()[j].y) {
+                    steps[i] = Cell.values()[j];
+                }
+            }
+        }
 
-            if (diffX < 0 && diffY < 0) {
-                int counter = 0;
-                for (int i = 1; i < len; i++) {
-                    counter = 8 * (source.x + i) + (source.y + i);
-                    steps[i] = Cell.values()[counter];
-                }
-            } else if (diffX > 0 && diffY > 0) {
-                int counter = 0;
-                for (int i = 1; i < len; i++) {
-                    counter = 8 * (source.x - i) + (source.y - i);
-                    steps[i] = Cell.values()[counter];
-                }
-            } else if (diffX > 0 && diffY < 0) {
-                int counter = 0;
-                for (int i = 1; i < len; i++) {
-                    counter = 8 * (source.x - i) + (source.y + i);
-                    steps[i] = Cell.values()[counter];
-                }
-            } else if (diffX < 0 && diffY > 0) {
-                int counter = 0;
-                for (int i = 1; i < len; i++) {
-                    counter = 8 * (source.x + i) + (source.y - i);
-                    steps[i] = Cell.values()[counter];
-                }
-            }
-           way = Arrays.copyOf(steps, steps.length);
-        }
-        return way;
+        return steps;
     }
-            @Override
-            public Figure copy(Cell dest) {
-                return new BishopBlack(dest);
-            }
-        }
+    @Override
+    public Figure copy(Cell dest) {
+        return new BishopBlack(dest);
+    }
+}
