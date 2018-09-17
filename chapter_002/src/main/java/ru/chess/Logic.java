@@ -22,16 +22,6 @@ public class Logic {
         this.figures[this.index++] = figure;
     }
 
-    public boolean validatetarget(Cell source) {
-        int index = this.findBy(source);
-        boolean result = false;
-        if (index == -1) {
-            throw new FigureNotFoundException();
-        } else {
-            result = true;
-        }
-        return  result;
-    }
 
     public boolean validateWay(Cell[] steps) {
         boolean result = true;
@@ -41,32 +31,37 @@ public class Logic {
                 break;
             }
         }
-        if (!result) {
-            throw new OccupiedWayException();
-        }
+       // if (!result) {
+       //     throw new OccupiedWayException();
+       // }
         return result;
     }
 
     public boolean move(Cell source, Cell dest) {
         boolean rst = false;
-        try {
+      //  try {
             int index = this.findBy(source);
-            validatetarget(source);
-            Cell[] steps = this.figures[index].way(source, dest);
-            if (validateWay(steps)) {
-                if (steps.length > 0 && steps[steps.length - 1].equals(dest)) {
-                    rst = true;
-                    this.figures[index] = this.figures[index].copy(dest);
-                }
+            if (index == -1) {
+                throw new FigureNotFoundException();
             }
-        } catch (ChessOutException coe) {
-            System.out.println("Ну кто так ходит?!!");
-        } catch (OccupiedWayException owe) {
-            System.out.println("Куда ставить то?!!(с)");
-            System.out.println("Да подожди ты!!(с)");
-        } catch (FigureNotFoundException fnfe) {
-            System.out.println("Где слоник? Нет слоника");
-        }
+            Cell[] steps = this.figures[index].way(source, dest);
+            if (!validateWay(steps)) {
+                throw new OccupiedWayException();
+            } else if (steps.length > 0 && steps[steps.length - 1].equals(dest)) {
+                this.figures[index] = this.figures[index].copy(dest);
+                rst = true;
+            }
+
+
+
+      //  } catch (ChessOutException coe) {
+      //      System.out.println("Ну кто так ходит?!!");
+      //  } catch (OccupiedWayException owe) {
+      //      System.out.println("Куда ставить то?!!(с)");
+      //      System.out.println("Да подожди ты!!(с)");
+      //  } catch (FigureNotFoundException fnfe) {
+      //      System.out.println("Где слоник? Нет слоника");
+     //   }
 
         return rst;
     }

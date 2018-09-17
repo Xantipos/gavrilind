@@ -23,20 +23,20 @@ public class BishopBlack implements Figure {
     public Cell[] way(Cell source, Cell dest) {
         int diffX = source.x - dest.x;
         int diffY = source.y - dest.y;
-        int len = 0;
-
         if (Math.abs(diffY) != Math.abs(diffX)) {
             throw new ChessOutException();
-        } else {
-            len = Math.abs(diffX) + 1;
         }
+            int len = Math.abs(diffX);
+
         int deltaX = Integer.compare(source.x, dest.x);
         int deltaY = Integer.compare(source.y, dest.y);
         Cell[] steps = new Cell[len];
-        for (int i = 1; i < len; i++) {
-            for (int j = 0; j < 63; j++) {
-                if(source.x - deltaX * i == Cell.values()[j].x & source.y - deltaY * i == Cell.values()[j].y) {
-                    steps[i] = Cell.values()[j];
+        int k = 0;
+        for (int i = 0; i < len + 1; i++) {
+            for (int j = 0; j < 64; j++) {
+                if(source.x - deltaX * i == Cell.values()[j].x & source.y - deltaY * i == Cell.values()[j].y & i > 0) {
+                    steps[k] = Cell.values()[j];
+                    k++;
                 }
             }
         }

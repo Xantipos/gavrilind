@@ -25,28 +25,11 @@ import static org.junit.Assert.assertThat;
 /**
  */
 public class BishopBlackTest {
-    @Test
-    public void whenBishopDiag() {
-        Logic logic = new Logic();
-
-        //logic.add(new RookBlack(Cell.A8));
-        //assertThat (logic.move(Cell.C8, Cell.F5), is (true));
-        Cell source = Cell.F4;
-        Cell target = Cell.D3;
-        KnightBlack figure = new KnightBlack(source);
-        Cell[] result = new Cell[0];
-
-        result = figure.way(source, target);
-        System.out.println("Первая точка координата X " + result[0].x);
-        System.out.println("Первая точка координата Y " + result[0].y);
-        System.out.println("Вторая точка координата X " + result[1].x);
-        System.out.println("Вторая точка координата Y " + result[1].y);
-        System.out.println("Третья точка координата X " + result[2].x);
-        System.out.println("Третья точка координата Y " + result[2].y);
-
-
-        //assertThat (logic.move(Cell.A8, target), is (true));
-       assertThat(result[result.length - 1].x, is(target.x));
-        assertThat(result[result.length - 1].y, is(target.y));
-    }
+        @Test
+        public void test() {
+            BishopBlack b = new BishopBlack(Cell.A1);
+            Cell[] actual = b.way(b.position(), Cell.H8);
+            Cell[] expected = {Cell.B2, Cell.C3, Cell.D4, Cell.E5, Cell.F6, Cell.G7, Cell.H8};
+            assertThat(actual, is(expected));
+        }
 }
