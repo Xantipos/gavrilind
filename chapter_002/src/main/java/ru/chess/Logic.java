@@ -37,7 +37,7 @@ public class Logic {
         return result;
     }
 
-    public boolean move(Cell source, Cell dest) {
+    public boolean move(Cell source, Cell dest) throws FigureNotFoundException, OccupiedWayException  {
         boolean rst = false;
       //  try {
             int index = this.findBy(source);

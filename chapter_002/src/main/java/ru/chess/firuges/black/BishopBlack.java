@@ -20,7 +20,7 @@ public class BishopBlack implements Figure {
         return this.position;
     }
     @Override
-    public Cell[] way(Cell source, Cell dest) {
+    public Cell[] way(Cell source, Cell dest) throws ChessOutException {
         int diffX = source.x - dest.x;
         int diffY = source.y - dest.y;
         if (Math.abs(diffY) != Math.abs(diffX)) {
