@@ -31,15 +31,11 @@ public class Logic {
                 break;
             }
         }
-       // if (!result) {
-       //     throw new OccupiedWayException();
-       // }
         return result;
     }
 
-    public boolean move(Cell source, Cell dest) throws FigureNotFoundException, OccupiedWayException  {
+    public boolean move(Cell source, Cell dest) throws FigureNotFoundException, OccupiedWayException, ChessOutException  {
         boolean rst = false;
-      //  try {
             int index = this.findBy(source);
             if (index == -1) {
                 throw new FigureNotFoundException();
@@ -47,22 +43,10 @@ public class Logic {
             Cell[] steps = this.figures[index].way(source, dest);
             if (!validateWay(steps)) {
                 throw new OccupiedWayException();
-            } else if (steps.length > 0 && steps[steps.length - 1].equals(dest)) {
+            }  if (steps.length > 0) {
                 this.figures[index] = this.figures[index].copy(dest);
                 rst = true;
             }
-
-
-
-      //  } catch (ChessOutException coe) {
-      //      System.out.println("Ну кто так ходит?!!");
-      //  } catch (OccupiedWayException owe) {
-      //      System.out.println("Куда ставить то?!!(с)");
-      //      System.out.println("Да подожди ты!!(с)");
-      //  } catch (FigureNotFoundException fnfe) {
-      //      System.out.println("Где слоник? Нет слоника");
-     //   }
-
         return rst;
     }
 

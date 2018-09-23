@@ -32,12 +32,10 @@ public class BishopBlack implements Figure {
         int deltaY = Integer.compare(source.y, dest.y);
         Cell[] steps = new Cell[len];
         int k = 0;
-        for (int i = 0; i < len + 1; i++) {
-            for (int j = 0; j < 64; j++) {
-                if(source.x - deltaX * i == Cell.values()[j].x & source.y - deltaY * i == Cell.values()[j].y & i > 0) {
-                    steps[k] = Cell.values()[j];
-                    k++;
-                }
+
+        for (int j = 0; j < Cell.values().length; j++) {
+            if(source.x - deltaX * (k + 1) == Cell.values()[j].x && source.y - deltaY * (k + 1) == Cell.values()[j].y) {
+                steps[k++] = Cell.values()[j];
             }
         }
 
