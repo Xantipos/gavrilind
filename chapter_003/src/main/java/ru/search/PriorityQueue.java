@@ -10,12 +10,20 @@ public class PriorityQueue {
      * @param task задача
      */
     public void put(Task task) {
-        //TODO добавить вставку в связанный список.
-        if (tasks.size() != 0) {
-            int elem = tasks.element().getPriority();
-            int newelem = task.getPriority();
-            if (elem > newelem) {tasks.add(0,task);}
-        } else {tasks.add(task);
+
+        if (tasks.size() >= 1) {
+            int max = tasks.size();
+            for (int i = 0; i < max; i++) {
+                if (task.getPriority() < tasks.get(i).getPriority()) {
+                    tasks.add(i, task);
+                    break;
+                }
+                if (task.getPriority() >= tasks.get(i).getPriority()) {
+                    tasks.add(i + 1, task);
+                    break;
+                }
+            }
+        } else {tasks.add(0,task);
         }
     }
 
