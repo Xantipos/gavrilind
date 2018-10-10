@@ -11,17 +11,15 @@ public class PriorityQueue {
      */
     public void put(Task task) {
         int index = tasks.size();
-        if (tasks.size() >= 1) {
-            int max = tasks.size();
-            for (int i = 0; i < max; i++) {
-                if (task.getPriority() < tasks.get(i).getPriority()) {
-                    index = i;
-                    break;
-                }
+
+        int max = tasks.size();
+        for (int i = 0; i < max; i++) {
+            if (task.getPriority() < tasks.get(i).getPriority()) {
+                index = i;
+                break;
             }
-            tasks.add(index, task);
-        } else {tasks.add(0,task);
         }
+        tasks.add(index, task);
     }
 
     public Task take() {
