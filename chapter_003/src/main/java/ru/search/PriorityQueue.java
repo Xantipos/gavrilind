@@ -12,8 +12,7 @@ public class PriorityQueue {
     public void put(Task task) {
         int index = tasks.size();
 
-        int max = tasks.size();
-        for (int i = 0; i < max; i++) {
+        for (int i = 0; i < tasks.size(); i++) {
             if (task.getPriority() < tasks.get(i).getPriority()) {
                 index = i;
                 break;
