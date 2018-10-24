@@ -20,6 +20,17 @@ public class ConvertList2Array {
             }
         }
         return array;
+
+    }
+    public List<Integer> convert (List<int[]> list){
+
+        List<Integer> result = new ArrayList<>();
+        for (int[] arrint : list){
+            for (int resint : arrint){
+                result.add(resint);
+            }
+        }
+        return result;
     }
 }
 
