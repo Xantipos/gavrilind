@@ -5,10 +5,10 @@ import java.util.HashMap;
 public class UserConvert {
 
     public HashMap<Integer, User> process(List<User> list) {
-        HashMap UserS=new HashMap();
+        HashMap users = new HashMap();
         for (User  us : list) {
-            UserS.put(us.getId(), us);
+            users.put(us.getId(), us);
         }
-        return UserS;
+        return users;
     }
 }

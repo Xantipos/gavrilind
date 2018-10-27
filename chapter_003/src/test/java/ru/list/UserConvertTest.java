@@ -10,19 +10,19 @@ import java.util.HashMap;
 
 public class UserConvertTest {
     @Test
-    public void List3Users() {
-        UserConvert UserCon = new UserConvert();
+    public void list3users() {
+        UserConvert usercon = new UserConvert();
         List<User> listus = new ArrayList<User>();
-        User Dimon = new User("Dimon", "Nov", 2);
-        User Kolyamba = new User("Kolyamba", "Nov", 3);
-        User KsushaKot = new User("KsushaKot", "Nov", 6);
+        User dimon = new User("Dimon", "Nov", 2);
+        User kolyamba = new User("Kolyamba", "Nov", 3);
+        User ksushaKot = new User("KsushaKot", "Nov", 6);
 
-        listus.add(Dimon);
-        listus.add(Kolyamba);
-        listus.add(KsushaKot);
+        listus.add(dimon);
+        listus.add(kolyamba);
+        listus.add(ksushaKot);
 
         HashMap map = new HashMap();
-        map = UserCon.process(listus);
+        map = usercon.process(listus);
 
         HashMap expect = new HashMap();
         expect.put(2, "Dimon");
