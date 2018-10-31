@@ -13,12 +13,10 @@ public class Tracker {
     public List <Item>  items = new ArrayList<>(100);
     public static final Random RN = new Random();
 
-    private int position = 0;
-
     public void add(Item item) {
         item.setId(generateId());
-        items.add(position, item);
-        position++;
+        items.add(items.size(), item);
+        //position++;
     }
 
     private String generateId() {
@@ -27,9 +25,10 @@ public class Tracker {
 
     public boolean replace(String id, Item itemIn) {
         boolean result = false;
-        for (int i = 0; i < position; i++) {
+        for (int i = 0; i < items.size(); i++) {
             if (items.get(i).getId().equals(id)) {
                 itemIn.setId(id);
+                items.remove(i);
                 items.add(i,itemIn);
                 result = true;
                 break;
@@ -40,10 +39,9 @@ public class Tracker {
 
     public boolean delete(String id) {
         boolean result = false;
-        for (int i = 0; i < position; i++) {
+        for (int i = 0; i < items.size(); i++) {
             if (items.get(i).getId().equals(id)) {
                 items.remove(i);
-                position--;
                 result = true;
                 break;
             }
@@ -57,21 +55,21 @@ public class Tracker {
           return result;
     }
 
-    public Item[] findByName(String key) {
-        Item[] resultname = new Item[100];
+    public List<Item> findByName(String key) {
+        List <Item> resultname = new ArrayList<>(100);
         int counter = 0;
-        for (int i = 0; i < position; i++) {
+        for (int i = 0; i < items.size(); i++) {
             if (items.get(i).getName().equals(key)) {
-                resultname[counter] = items.get(i);
+                resultname.add(items.get(i));
                 counter++;
             }
         }
-        return  Arrays.copyOf(resultname, counter);
+        return  resultname;
     }
 
     public Item findById(String id) {
         Item result = null;
-        for (int i = 0; i < position; i++) {
+        for (int i = 0; i < items.size(); i++) {
             if (items.get(i).getId().equals(id)) {
                 result = items.get(i);
             }

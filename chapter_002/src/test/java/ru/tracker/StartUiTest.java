@@ -25,19 +25,19 @@ import ru.tracker.input.StubInput;
 public class StartUiTest {
 
     String st =                         new StringBuilder()
-            .append("0 Add new Item.")
+            .append("0 : Add new Item")
             .append(System.lineSeparator())
-            .append("1 Show all Items.")
+            .append("1 : Show all Items")
             .append(System.lineSeparator())
-            .append("2 Edit item.")
+            .append("2 : Edit item")
             .append(System.lineSeparator())
-            .append("3 Delete Item.")
+            .append("3 : Delete Item")
             .append(System.lineSeparator())
-            .append("4 Find item by Id.")
+            .append("4 : Find item by Id")
             .append(System.lineSeparator())
-            .append("5 Find items by name.")
+            .append("5 : Find items by name")
             .append(System.lineSeparator())
-            .append("6 Exit Program.")
+            .append("6 : Exit Program")
             .append(System.lineSeparator())
             .toString();
     private final PrintStream stdout = System.out;
@@ -106,7 +106,7 @@ public class StartUiTest {
         tracker.add(item);
         Input input = new StubInput(new String[]{"5", item.getName(), "6"});
         new StartUI(input, tracker).init();
-        assertThat(tracker.findByName(item.getName())[0].getName(), is("test name"));
+        assertThat(tracker.findByName(item.getName()).get(0).getName(), is("test name"));
     }
 
     @Test

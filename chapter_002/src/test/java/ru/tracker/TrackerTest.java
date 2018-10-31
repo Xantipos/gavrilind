@@ -66,7 +66,7 @@ public class TrackerTest {
 
     @Test
     public void whenFindByNameThenReturnItemsName() {
-        Item[] result = new Item[100];
+        List <Item> result = new ArrayList<>(100);
         Tracker tracker = new Tracker();
         Item one = new Item("test1", "testDescription", 123L);
         tracker.add(one);
@@ -75,9 +75,9 @@ public class TrackerTest {
         Item three = new Item("test", "testDescription3", 12345L);
         tracker.add(three);
         result = tracker.findByName("test");
-        assertThat(result.length, is(2));
-        assertThat(result[0].getName(), is("test"));
-        assertThat(result[1].getName(), is("test"));
+        assertThat(result.size(), is(2));
+        assertThat(result.get(0).getName(), is("test"));
+        assertThat(result.get(1).getName(), is("test"));
     }
 
     @Test
