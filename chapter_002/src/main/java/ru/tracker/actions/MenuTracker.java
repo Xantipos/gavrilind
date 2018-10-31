@@ -3,7 +3,6 @@ package ru.tracker.actions;
 import ru.tracker.StartUI;
 import ru.tracker.storage.Tracker;
 import ru.tracker.input.Input;
-
 import java.util.List;
 import java.util.ArrayList;
 
@@ -44,10 +43,10 @@ public class MenuTracker {
     }
 
    // Метод заполняет массив ключами
-    public int[] arrayKey() {
-        int[] range = new int[getActionsLentgh()];
+    public List<Integer> arrayKey() {
+        List <Integer> range = new ArrayList<>(getActionsLentgh());
         for (int i = 0; i < getActionsLentgh(); i++) {
-            range[i] = actions.get(i).key();;
+            range.add(i,actions.get(i).key());
         }
         return range;
     }

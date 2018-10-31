@@ -4,6 +4,8 @@ package ru.tracker.actions;
 import ru.tracker.input.Input;
 import ru.tracker.model.Item;
 import ru.tracker.storage.Tracker;
+import java.util.List;
+import java.util.ArrayList;
 
 class ShowItems extends BaseAction {
 
@@ -13,9 +15,9 @@ class ShowItems extends BaseAction {
 
     @Override
     public void execute(Input input, Tracker tracker) {
-        Item[] showresult = tracker.findAll();
-        for (int i = 0; i < showresult.length; i++) {
-            System.out.println(showresult[i].getName());
+        List <Item> showresult = tracker.findAll();
+        for (int i = 0; i < showresult.size(); i++) {
+            System.out.println(showresult.get(i).getName());
         }
     }
 }

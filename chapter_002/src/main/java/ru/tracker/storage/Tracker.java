@@ -10,14 +10,14 @@ import java.util.*;
  */
 public class Tracker {
 
-    public Item[] items = new Item[100];
+    public List <Item>  items = new ArrayList<>(100);
     public static final Random RN = new Random();
 
     private int position = 0;
 
     public void add(Item item) {
         item.setId(generateId());
-        items[position] = item;
+        items.add(position, item);
         position++;
     }
 
@@ -28,9 +28,9 @@ public class Tracker {
     public boolean replace(String id, Item itemIn) {
         boolean result = false;
         for (int i = 0; i < position; i++) {
-            if (items[i].getId().equals(id)) {
+            if (items.get(i).getId().equals(id)) {
                 itemIn.setId(id);
-                items[i] = itemIn;
+                items.add(i,itemIn);
                 result = true;
                 break;
             }
@@ -41,9 +41,8 @@ public class Tracker {
     public boolean delete(String id) {
         boolean result = false;
         for (int i = 0; i < position; i++) {
-            if (items[i].getId().equals(id)) {
-                System.arraycopy(items, 0, items, 0, i);
-                System.arraycopy(items, i + 1,  items, i, position - i);
+            if (items.get(i).getId().equals(id)) {
+                items.remove(i);
                 position--;
                 result = true;
                 break;
@@ -52,16 +51,18 @@ public class Tracker {
         return result;
     }
 
-    public Item[] findAll() {
-        return   Arrays.copyOf(items, position);
+    public List<Item> findAll() {
+          List<Item> result = new ArrayList<>();
+          result.addAll(items);
+          return result;
     }
 
     public Item[] findByName(String key) {
         Item[] resultname = new Item[100];
         int counter = 0;
         for (int i = 0; i < position; i++) {
-            if (items[i].getName().equals(key)) {
-                resultname[counter] = items[i];
+            if (items.get(i).getName().equals(key)) {
+                resultname[counter] = items.get(i);
                 counter++;
             }
         }
@@ -71,8 +72,8 @@ public class Tracker {
     public Item findById(String id) {
         Item result = null;
         for (int i = 0; i < position; i++) {
-            if (items[i].getId().equals(id)) {
-                result = items[i];
+            if (items.get(i).getId().equals(id)) {
+                result = items.get(i);
             }
         }
         return result;

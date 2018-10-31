@@ -6,6 +6,8 @@ import ru.tracker.input.ConsoleInput;
 import ru.tracker.input.Input;
 import ru.tracker.input.ValidateInput;
 import ru.tracker.storage.Tracker;
+import java.util.List;
+import java.util.ArrayList;
 
 /**
  * @version $Id$
@@ -45,10 +47,12 @@ public class StartUI {
 
             MenuTracker menu = new MenuTracker(this.input, this.tracker);
             menu.fillActions(this);
-            int[] range = menu.arrayKey();
+            List <Integer> range = menu.arrayKey();
             do {
                 menu.show();
-                menu.select(input.ask("select:", range));
+                int[] array = new int[range.size()];
+                for(int i = 0; i < range.size(); i++) array[i] = range.get(i);
+                menu.select(input.ask("select:", array));
                  } while (work);
         }
 

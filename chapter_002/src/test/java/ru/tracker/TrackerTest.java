@@ -3,6 +3,9 @@ import org.junit.Assert;
 import org.junit.Test;
 import ru.tracker.storage.Tracker;
 import ru.tracker.model.Item;
+import java.util.List;
+import java.util.ArrayList;
+
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
@@ -12,7 +15,7 @@ public class TrackerTest {
         Tracker tracker = new Tracker();
         Item item = new Item("test1", "testDescription", 123L);
         tracker.add(item);
-        assertThat(tracker.findAll()[0], is(item));
+        assertThat(tracker.findAll().get(0), is(item));
     }
 
     @Test
@@ -45,7 +48,7 @@ public class TrackerTest {
 
     @Test
     public void whenFindallNameThenReturnLenghtName() {
-        Item[] result = new Item[100];
+        List <Item> result = new ArrayList<>(100);
         Tracker tracker = new Tracker();
         Item first = new Item("test1", "testDescription", 123L);
         tracker.add(first);
@@ -55,10 +58,10 @@ public class TrackerTest {
         tracker.add(three);
         result = tracker.findAll();
 
-        assertThat(result.length, is(3));
-        assertThat(result[0].getName(), is("test1"));
-        assertThat(result[1].getName(), is("test2"));
-        assertThat(result[2].getName(), is("test3"));
+        assertThat(result.size(), is(3));
+        assertThat(result.get(0).getName(), is("test1"));
+        assertThat(result.get(1).getName(), is("test2"));
+        assertThat(result.get(2).getName(), is("test3"));
     }
 
     @Test
