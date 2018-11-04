@@ -33,7 +33,6 @@ public class SortUserTest {
         expect.add(ksushaKot);
         expect.add(kolyamba);
         expect.add(dimon);
-
         assertThat(result, is(expect));
     }
 }

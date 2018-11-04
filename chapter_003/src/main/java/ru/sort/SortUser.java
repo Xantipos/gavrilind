@@ -10,10 +10,8 @@ import java.util.Set;
 public class SortUser {
 
     public Set<User> sort (List<User> in) {
-        Set<User> users = new TreeSet<User>();
-        users.addAll(in);
+        Set<User> users = new TreeSet(in);
         return users;
-
     }
 }
 
