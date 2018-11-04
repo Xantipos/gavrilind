@@ -35,5 +35,38 @@ public class SortUserTest {
         expect.add(dimon);
         assertThat(result, is(expect));
     }
+
+    @Test
+    public void doublefieldtest() {
+        SortUser usersort = new SortUser();
+        List<ru.sort.User> listus = new ArrayList<ru.sort.User>();
+        ru.sort.User dimon = new ru.sort.User("Dimon", 29);
+        ru.sort.User dimon1 = new ru.sort.User("Dimon", 32);
+        ru.sort.User kolyamba = new ru.sort.User("Kolyamba", 28);
+        ru.sort.User kolyamba1 = new ru.sort.User("Kolyamba", 35);
+        ru.sort.User ksushaKot = new ru.sort.User("ksushaKot", 27);
+
+        listus.add(dimon);
+        listus.add(dimon1);
+        listus.add(kolyamba);
+        listus.add(kolyamba1);
+        listus.add(ksushaKot);
+
+        List<User> result = usersort.sortByAllFields(listus);
+
+
+        List<User> expect = new ArrayList<>();
+        expect.add(dimon);
+        expect.add(dimon1);
+        expect.add(kolyamba);
+        expect.add(kolyamba1);
+        expect.add(ksushaKot);
+
+        for (User us : result) {
+            System.out.print(us.name  );
+            System.out.println(us.age);
+        }
+        assertThat(result, is(expect));
+    }
 }
 
