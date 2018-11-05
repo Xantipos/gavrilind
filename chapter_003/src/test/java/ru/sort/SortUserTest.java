@@ -63,7 +63,7 @@ public class SortUserTest {
         expect.add(ksushaKot);
 
         for (User us : result) {
-            System.out.print(us.name  );
+            System.out.print(us.name);
             System.out.println(us.age);
         }
         assertThat(result, is(expect));
