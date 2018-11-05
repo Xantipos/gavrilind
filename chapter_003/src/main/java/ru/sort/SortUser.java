@@ -16,7 +16,7 @@ public class SortUser {
       users.sort(new Comparator<User>() {
                      @Override
                      public int compare(User o1, User o2) {
-                         return String.valueOf(o1.name.length()).compareTo(String.valueOf(o2.name.length()));
+                         return Integer.compare(o1.name.length(),o2.name.length());
                      }
                  }
           );
@@ -28,18 +28,13 @@ public class SortUser {
 
         users.sort(new Comparator<User>() {
             @Override
-            public int compare(User o1, User o2) {
-               int result = 0;
-                int resname = o1.name.compareTo(o2.name) ;
-               int resage = String.valueOf(o1.age).compareTo(String.valueOf(o2.age));
-                if((resname == 1 & resage == 1) | (resname == 0 & resage ==1) | (resname == 1 & resage == 0)) {
-                    result = 1;
-                } else if ((resname == -1 & resage == -1) | (resname == 0 & resage == -1) | (resname == -1 & resage == 0) ) {
-                    result = -1;
+                public int compare(User o1, User o2) {
+                    int result = o1.name.compareTo(o2.name) ;
+                    if (result == 0) {
+                        result = Integer.compare(o1.age, o2.age);
+                    }
+                    return result;
                 }
-
-                return result;
-            }
         }
         );
 
