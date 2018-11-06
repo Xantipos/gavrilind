@@ -11,13 +11,15 @@ public class ListCompare implements Comparator<String> {
             char chleft = left.charAt(i);
             char chright = right.charAt(i);
             int chcom = Character.compare(chleft, chright);
-            if (chcom !=0) {
+            if (chcom != 0) {
                 result = chcom;
                 break;
             }
             i++;
         }
-        if (result == 0) {result = Integer.compare(right.length(), left.length());}
+        if (result == 0) {
+            result = Integer.compare(left.length(), right.length());
+        }
 
         return result;
     }
