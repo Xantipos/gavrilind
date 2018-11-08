@@ -44,9 +44,9 @@ public class MenuTracker {
 
    // Метод заполняет массив ключами
     public List<Integer> arrayKey() {
-        List <Integer> range = new ArrayList<>(getActionsLentgh());
+        List<Integer> range = new ArrayList<>(getActionsLentgh());
         for (int i = 0; i < getActionsLentgh(); i++) {
-            range.add(i,actions.get(i).key());
+            range.add(i, actions.get(i).key());
         }
         return range;
     }

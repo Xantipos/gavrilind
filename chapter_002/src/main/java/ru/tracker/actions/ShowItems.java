@@ -15,7 +15,7 @@ class ShowItems extends BaseAction {
 
     @Override
     public void execute(Input input, Tracker tracker) {
-        List <Item> showresult = tracker.findAll();
+        List<Item> showresult = tracker.findAll();
         for (int i = 0; i < showresult.size(); i++) {
             System.out.println(showresult.get(i).getName());
         }

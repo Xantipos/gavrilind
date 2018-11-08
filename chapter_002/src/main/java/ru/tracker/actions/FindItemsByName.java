@@ -17,7 +17,7 @@ public FindItemsByName(int key, String name) {
     @Override
     public void execute(Input input, Tracker tracker) {
     String foundname = input.ask("name поиск : ");
-             List <Item> nameresult = tracker.findByName(foundname);
+             List<Item> nameresult = tracker.findByName(foundname);
                 if (nameresult.size() == 0) {
                     System.out.println("Заявка не найдена");
                 } else {

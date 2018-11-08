@@ -48,7 +48,7 @@ public class TrackerTest {
 
     @Test
     public void whenFindallNameThenReturnLenghtName() {
-        List <Item> result = new ArrayList<>(100);
+        List<Item> result = new ArrayList<>(100);
         Tracker tracker = new Tracker();
         Item first = new Item("test1", "testDescription", 123L);
         tracker.add(first);
@@ -66,7 +66,7 @@ public class TrackerTest {
 
     @Test
     public void whenFindByNameThenReturnItemsName() {
-        List <Item> result = new ArrayList<>(100);
+        List<Item> result = new ArrayList<>(100);
         Tracker tracker = new Tracker();
         Item one = new Item("test1", "testDescription", 123L);
         tracker.add(one);

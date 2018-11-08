@@ -10,7 +10,7 @@ import java.util.*;
  */
 public class Tracker {
 
-    public List <Item>  items = new ArrayList<>(100);
+    public List<Item>  items = new ArrayList<>(100);
     public static final Random RN = new Random();
 
     public void add(Item item) {
@@ -27,7 +27,7 @@ public class Tracker {
         for (int i = 0; i < items.size(); i++) {
             if (items.get(i).getId().equals(id)) {
                 itemIn.setId(id);
-                items.set(i,itemIn);
+                items.set(i, itemIn);
                 result = true;
                 break;
             }
@@ -54,7 +54,7 @@ public class Tracker {
     }
 
     public List<Item> findByName(String key) {
-        List <Item> resultname = new ArrayList<>(100);
+        List<Item> resultname = new ArrayList<>(100);
         for (int i = 0; i < items.size(); i++) {
             if (items.get(i).getName().equals(key)) {
                 resultname.add(items.get(i));

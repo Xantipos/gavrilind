@@ -34,7 +34,7 @@ public class BishopBlack implements Figure {
         int k = 0;
 
         for (int j = 0; j < Cell.values().length; j++) {
-            if(source.x - deltaX * (k + 1) == Cell.values()[j].x && source.y - deltaY * (k + 1) == Cell.values()[j].y) {
+            if (source.x - deltaX * (k + 1) == Cell.values()[j].x && source.y - deltaY * (k + 1) == Cell.values()[j].y) {
                 steps[k++] = Cell.values()[j];
             }
         }
