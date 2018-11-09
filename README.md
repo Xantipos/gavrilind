@@ -1,4 +1,8 @@
 # gavrilind
-За 2018 планирую закончить курс http://job4j.ru/
-В 2019 хотелось бы активного фриланса для получения опыта.
-Ну а на будущее учавствовать в серьезном проекте.
+http://job4j.ru/
+
+[![Build Status](https://travis-ci.org/Xantipos/gavrilind.svg?branch=master)](https://travis-ci.org/Xantipos/gavrilind)
+
+[![Coverage Status](https://codecov.io/gh/Xantipos/gavrilind/branch/master/graphs)
+
+[![codecov](https://codecov.io/gh/Xantipos/gavrilind/branch/master/graph/badge.svg)](https://codecov.io/gh/Xantipos/gavrilind)
