@@ -10,7 +10,7 @@ public class Bank {
     private TreeMap<User, ArrayList<Account>> treemap = new TreeMap<>();
 
     public void addUser(User user) {
-        this.treemap.put(user, new ArrayList<>());
+        this.treemap.put(user, new ArrayList<Account>());
     }
 
     public void delete(User user) {
@@ -43,11 +43,33 @@ public class Bank {
         return result;
     }
 
-    public User getUser(String passport) {
+    public User findUserByPassport(String passport) {
         User result = new User();
         for (User us : treemap.keySet()) {
             if  (us.getPassport().equals(passport)) {
                 result = us;
+            }
+        }
+        return result;
+    }
+
+    public User findUserByReq(String Requisite) {
+        Account targetAccount = new Account(0,"");
+        User result = new User();
+
+        for ( ArrayList<Account> acc : treemap.values()) {
+            for (Account accountUser : acc) {
+                if (accountUser.getReqs() == Requisite) {
+                    targetAccount = accountUser;
+                }
+            }
+        }
+        for (User us : treemap.keySet()) {
+            ArrayList<Account> listAccountUser = this.treemap.get(us);
+            for (Account accountOfUser : listAccountUser) {
+                if(accountOfUser == targetAccount) {
+                    result = us;
+                }
             }
         }
         return result;
@@ -80,7 +102,7 @@ public class Bank {
         return result;
     }
 
-    public String toString() {
+    public String answer() {
         return "Bank{" + "accounts=" + treemap + "}";
     }
 }

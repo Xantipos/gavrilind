@@ -1,8 +1,13 @@
 package ru.bank;
 
-public class User {
+public class User implements Comparable<User> {
     public String name;
     public String passport;
+
+    @Override
+    public int compareTo(ru.bank.User o) {
+        return this.passport.compareTo(o.passport);
+    }
 
     public User() {
     }

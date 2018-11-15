@@ -28,9 +28,9 @@ public class Account {
         return success;
     }
 
-    public String toString() {
-        String otvet = "Account{" + "values=" + values + ", reqs='" + reqs + "\\" + "}";
-        return otvet;
+    public String answer() {
+        return String.format("Account{values=%f, reqs=%s}", values, reqs);
+
     }
 
     public boolean equals(Object o) {
