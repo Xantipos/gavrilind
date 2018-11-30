@@ -49,7 +49,7 @@ public class StartUI {
         menu.fillActions(this);
         List<Integer> range = menu.arrayKey();
         do {
-            menu.show();
+            menu.show(result -> System.out.println(result));
             int[] array = new int[range.size()];
             for (int i = 0; i < range.size(); i++) {
                 array[i] = range.get(i);

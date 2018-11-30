@@ -1,5 +1,5 @@
 package ru.tracker.actions;
-
+import java.util.function.*;
 import ru.tracker.StartUI;
 import ru.tracker.storage.Tracker;
 import ru.tracker.input.Input;
@@ -76,10 +76,11 @@ public class MenuTracker {
     /**
      * Метод выводит на экран меню.
      */
-    public void show() {
+    public void show(Consumer<String> media) {
         for (UserAction action : this.actions) {
             if (action != null) {
-                System.out.println(action.info());
+                //System.out.println(action.info());
+               media.accept(action.info());
             }
         }
     }
