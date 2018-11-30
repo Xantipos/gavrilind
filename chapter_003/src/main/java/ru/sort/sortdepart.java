@@ -18,19 +18,23 @@ public class Sortdepart implements Comparable<String> {
                 }
             }
             Collections.sort(result);
-            if (order == 1) { Collections.reverse(result);}
+            if (order == 1) {
+                Collections.reverse(result);
+            }
 
             return result;
         }
 
         public List<TreeSet> addToDepart(String[] in, int order) {
-        List<String> departnames = findDepartment(in,order);
+        List<String> departnames = findDepartment(in, order);
         List<TreeSet> result = new ArrayList<>();
-        for(String stname : departnames){
+        for (String stname : departnames) {
             TreeSet<String> dep = new TreeSet<>();
             dep.add(stname);
-            for(String st : in){
-                if(st.contains(stname)){dep.add(st);}
+            for (String st : in) {
+                if (st.contains(stname)) {
+                    dep.add(st);
+                }
             }
             result.add(dep);
         }

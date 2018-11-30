@@ -30,13 +30,13 @@ public class Calculator {
         calc.multiple(
                 0, 10, 2,
                 MathUtil::logor,
-                result -> System.out.println("Логарифмическая функция значеие" +result)
+                result -> System.out.println("Логарифмическая функция значеие" + result)
         );
 
         calc.multiple(
                 0, 10, 2,
                 MathUtil::quadrat,
-                result -> System.out.println("Квадратичная функция значенеи" +result)
+                result -> System.out.println("Квадратичная функция значенеи" + result)
         );
     }
 }

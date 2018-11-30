@@ -53,13 +53,13 @@ public class Bank {
         return result;
     }
 
-    public User findUserByReq(String Requisite) {
-        Account targetAccount = new Account(0,"");
+    public User findUserByReq(String requisite) {
+        Account targetAccount = new Account(0, "");
         User result = new User();
 
-        for ( ArrayList<Account> acc : treemap.values()) {
+        for (ArrayList<Account> acc : treemap.values()) {
             for (Account accountUser : acc) {
-                if (accountUser.getReqs() == Requisite) {
+                if (accountUser.getReqs() == requisite) {
                     targetAccount = accountUser;
                 }
             }
@@ -67,7 +67,7 @@ public class Bank {
         for (User us : treemap.keySet()) {
             ArrayList<Account> listAccountUser = this.treemap.get(us);
             for (Account accountOfUser : listAccountUser) {
-                if(accountOfUser == targetAccount) {
+                if (accountOfUser == targetAccount) {
                     result = us;
                 }
             }
@@ -84,7 +84,7 @@ public class Bank {
     }
 
     public Account getAccountByRequisiteFromUserPassport(String passport, String requisite) {
-        Account result = new Account(0,"0");
+        Account result = new Account(0, "0");
         for (Account acc : getAccounts(findUserByPassport(passport))) {
             if (acc.getReqs() == requisite) {
                 result = acc;
@@ -101,7 +101,7 @@ public class Bank {
         List<Account> listdest = getUserAccounts(destPassport);
         Account source = getAccountByRequisiteFromUserPassport(srcPassport, srcRequisite);
         Account destination = getAccountByRequisiteFromUserPassport(destPassport, dstRequisite);
-        if(listsrc.contains(source) & listdest.contains(destination)){
+        if (listsrc.contains(source) & listdest.contains(destination)) {
            result = source.transfer(destination, amount);
 
         }
