@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ru"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SortingDep.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">chapter_003</a> &gt; <a href="index.source.html" class="el_package">ru.sort</a> &gt; <span class="el_source">SortingDep.java</span></div><h1>SortingDep.java</h1><pre class="source lang-java linenums">package ru.sort;
+
+import java.util.Comparator;
+import java.util.*;
+
+<span class="fc" id="L6">public class SortingDep implements Comparable&lt;String&gt; {</span>
+<span class="fc" id="L7">    StringBuilder builder = new StringBuilder();</span>
+    @Override
+    public int compareTo(String o) {
+<span class="nc" id="L10">        return this.compareTo(o);</span>
+    }
+
+
+    public TreeSet&lt;String&gt; findDepartment(String[] in) {
+
+<span class="fc" id="L16">        TreeSet result = new TreeSet&lt;String&gt;();</span>
+<span class="fc bfc" id="L17" title="All 2 branches covered.">        for (String st : in) {</span>
+<span class="fc" id="L18">            builder.setLength(0);</span>
+
+<span class="fc bfc" id="L20" title="All 2 branches covered.">            for (int i = 0; i &lt; st.length(); i++) {</span>
+<span class="fc bfc" id="L21" title="All 2 branches covered.">                if (st.charAt(i) != '/') {</span>
+<span class="fc" id="L22">                    builder.append(st.charAt(i));</span>
+                } else {
+<span class="fc" id="L24">                    String completedString = builder.toString();</span>
+<span class="fc" id="L25">                    result.add(completedString);</span>
+<span class="fc" id="L26">                    builder.append(st.charAt(i));</span>
+                }
+            }
+<span class="fc" id="L29">            String str = builder.toString();</span>
+<span class="fc" id="L30">            result.add(str);</span>
+        }
+<span class="fc" id="L32">        return result;</span>
+    }
+
+    public List&lt;String&gt; findDepNames(TreeSet&lt;String&gt; into, int order) {
+<span class="fc" id="L36">        List result = new ArrayList&lt;String&gt;();</span>
+<span class="fc bfc" id="L37" title="All 2 branches covered.">        for (String st : into) {</span>
+<span class="fc bfc" id="L38" title="All 2 branches covered.">            if (!st.contains(&quot;/&quot;)) {</span>
+<span class="fc" id="L39">                result.add(st);</span>
+            }
+<span class="fc" id="L41">        }</span>
+<span class="fc" id="L42">        Collections.sort(result);</span>
+<span class="fc bfc" id="L43" title="All 2 branches covered.">        if (order == 1) {</span>
+<span class="fc" id="L44">            Collections.reverse(result);</span>
+        }
+<span class="fc" id="L46">        return result;</span>
+    }
+
+
+    public List&lt;TreeSet&gt; addToDepart(String[] in, int order) {
+<span class="fc" id="L51">        TreeSet&lt;String&gt; into = findDepartment(in);</span>
+<span class="fc" id="L52">        List&lt;String&gt; departNames = findDepNames(into, order);</span>
+<span class="fc" id="L53">        List&lt;TreeSet&gt; result = new ArrayList&lt;&gt;();</span>
+<span class="fc bfc" id="L54" title="All 2 branches covered.">        for (String stname : departNames) {</span>
+<span class="fc" id="L55">            TreeSet&lt;String&gt; dep = new TreeSet&lt;&gt;();</span>
+<span class="fc" id="L56">            dep.add(stname);</span>
+<span class="fc bfc" id="L57" title="All 2 branches covered.">            for (String st : in) {</span>
+<span class="fc bfc" id="L58" title="All 2 branches covered.">                if (st.contains(stname)) {</span>
+<span class="fc" id="L59">                    dep.add(st);</span>
+                }
+            }
+<span class="fc" id="L62">            result.add(dep);</span>
+<span class="fc" id="L63">        }</span>
+
+<span class="fc" id="L65">        return result;</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>

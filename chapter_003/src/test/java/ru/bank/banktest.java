@@ -9,9 +9,9 @@ import static org.hamcrest.Matchers.greaterThan;
 import static org.hamcrest.Matchers.lessThan;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-public class Banktest {
+public class BankTest {
     @Test
-    public void addUsernewUser() {
+    public void addUserNewUser() {
         Bank bank = new Bank();
         User dm = new User("Dimon", "4905");
         User dm2 = new User("Dimon", "4906");
