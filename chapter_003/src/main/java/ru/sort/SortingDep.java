@@ -15,20 +15,16 @@ public class SortingDep implements Comparable<String> {
 
         TreeSet result = new TreeSet<String>();
         for (String st : in) {
-            builder.setLength(0);
 
-            for (int i = 0; i < st.length(); i++) {
-                if (st.charAt(i) != '/') {
-                    builder.append(st.charAt(i));
-                } else {
-                    String completedString = builder.toString();
-                    result.add(completedString);
-                    builder.append(st.charAt(i));
-                }
+            for (String retval : st.split("/")) {
+                List<String> list = new ArrayList<String>(Arrays.asList(retval.split(" / ")));
+                result.addAll(list);
             }
-            String str = builder.toString();
-            result.add(str);
         }
+          //  }
+           // String str = builder.toString();
+            //result.addAll(list);
+
         return result;
     }
 
