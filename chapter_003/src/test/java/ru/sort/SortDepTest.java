@@ -15,10 +15,11 @@ public class SortDepTest {
 
     @Test
     public void list3departRevers() {
-        String[] in = {"K1/SK1/SSK1"};
+        String[] in = {"dd3/iyyy/df3", "K1/SK1/SSK1"};
         SortingDep sort = new SortingDep();
         TreeSet<String> result = sort.findDepartment(in);
-        System.out.println(result.toString());
+        List<TreeSet> result2 = sort.addToDepart(in, 1);
+        System.out.println(result2.toString());
     }
     @Test
     public void list3departNormal() {
