@@ -4,7 +4,7 @@ import java.util.Comparator;
 import java.util.*;
 
 public class SortingDep implements Comparable<String> {
-    StringBuilder builder = new StringBuilder();
+
     @Override
     public int compareTo(String o) {
         return this.compareTo(o);
@@ -15,16 +15,13 @@ public class SortingDep implements Comparable<String> {
 
         TreeSet result = new TreeSet<String>();
         for (String st : in) {
+           result.add(st);
 
-            for (String retval : st.split("/")) {
-                List<String> list = new ArrayList<String>(Arrays.asList(retval.split(" / ")));
-                result.addAll(list);
-            }
+            List<String> list1 = new ArrayList<String>(Arrays.asList(st.split("/",2)));
+            result.addAll(list1);
+            List<String> list2 = new ArrayList<String>(Arrays.asList(st.split("/", 3)));
+            result.addAll(list2);
         }
-          //  }
-           // String str = builder.toString();
-            //result.addAll(list);
-
         return result;
     }
 
