@@ -1,26 +1,20 @@
 package ru.comparator;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Comparator;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class ListCompare implements Comparator<String> {
     @Override
     public int compare(String left, String right) {
         int result = 0;
-        int i = 0;
-        while (i < left.length() & i < right.length()) {
-            char chleft = left.charAt(i);
-            char chright = right.charAt(i);
-            int chcom = Character.compare(chleft, chright);
-            if (chcom != 0) {
-                result = chcom;
-                break;
-            }
-            i++;
-        }
-        if (result == 0) {
-            result = Integer.compare(left.length(), right.length());
-        }
 
+        List<String> tasks = Arrays.asList(left, right);
+        String top = tasks.stream().max(String::compareTo).get();
+        if (top.equals(left) && !right.equals(left)) {result = 1;}
+        if (top.equals(right) && !right.equals(left)) {result = -1;}
         return result;
     }
 }

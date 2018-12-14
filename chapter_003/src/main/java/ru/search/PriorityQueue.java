@@ -1,27 +1,22 @@
 package ru.search;
 import java.util.LinkedList;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.Comparator;
+
 public class PriorityQueue {
     private LinkedList<Task> tasks = new LinkedList<>();
 
-    /**
-     * Метод должен вставлять в нужную позицию элемент.
-     * Позиция определять по полю приоритет.
-     * Для вставик использовать add(int index, E value)
-     * @param task задача
-     */
-    public void put(Task task) {
-        int index = tasks.size();
-
-        for (int i = 0; i < tasks.size(); i++) {
-            if (task.getPriority() < tasks.get(i).getPriority()) {
-                index = i;
-                break;
-            }
-        }
-        tasks.add(index, task);
+    public void put(List<Task> in) {
+        List<Task> res  = in.stream().sorted(Comparator.comparing(Task::getPriority).reversed()).collect(Collectors.toList());
+        tasks.addAll(res);
+        //for(Task ts : tasks){System.out.println(ts.getDesc());}
     }
 
     public Task take() {
         return this.tasks.poll();
+    }
+    public void print() {
+        for(Task ts : tasks){System.out.println("Печатаем элементы очереди " + ts.getDesc());}
     }
 }

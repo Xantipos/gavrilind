@@ -1,10 +1,10 @@
 package ru.search;
 
 public class Person {
-    private String name;
-    private String surname;
-    private String phone;
-    private String address;
+    public String name;
+    public String surname;
+    public String phone;
+    public String address;
 
     public Person(String name, String surname, String phone, String address) {
         this.name = name;

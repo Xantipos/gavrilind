@@ -2,6 +2,7 @@ package ru.search;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class PhoneDictionary {
     private List<Person> persons = new ArrayList<Person>();
@@ -16,12 +17,11 @@ public class PhoneDictionary {
      * @return Список подощедщих пользователей.
      */
     public List<Person> find(String key) {
-        List<Person> result = new ArrayList<>();
-        for (Person s: persons) {
-            if (s.getName().contains(key) | s.getAddress().contains(key) | s.getPhone().contains(key) | s.getSurname().contains(key)) {
-                result.add(s);
-            }
-        }
+
+        List<Person> result = persons.stream().filter(
+                person -> person.name.contains(key) | person.address.contains(key) | person.surname.contains(key) | person.phone.contains(key)
+        ).collect(Collectors.toList());
+
         return result;
     }
 }
