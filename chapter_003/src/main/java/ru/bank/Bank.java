@@ -1,13 +1,13 @@
 package ru.bank;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.TreeMap;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
+
 
 public class Bank {
 
-    private TreeMap<User, ArrayList<Account>> treemap = new TreeMap<>();
+    public TreeMap<User, ArrayList<Account>> treemap = new TreeMap<>();
+
 
     public void addUser(User user) {
         this.treemap.put(user, new ArrayList<Account>());
@@ -17,11 +17,18 @@ public class Bank {
         this.treemap.remove(user);
     }
 
+
+
+
+
+
+
     public void addAccountToUser(String passport, Account account) {
-        for (User us : treemap.keySet()) {
-            if  (us.getPassport().equals(passport)) {
+        List<User> list = new ArrayList(treemap.keySet());
+        List<User> top = list.stream().filter(user -> user.getPassport().contains(passport)).collect(Collectors.toList());
+
+        for (User us : top) {
                 this.treemap.get(us).add(account);
-            }
         }
     }
 
@@ -34,36 +41,22 @@ public class Bank {
     }
 
     public List<Account> getUserAccounts(String passport) {
-        List<Account> result = new ArrayList<>();
-        for (User us : treemap.keySet()) {
-            if  (us.getPassport().equals(passport)) {
-                result = this.treemap.get(us);
-            }
-        }
-        return result;
+
+        return this.treemap.get(new ArrayList<User>(treemap.keySet()).stream().
+                filter(user -> user.getPassport().contains(passport)).collect(Collectors.toList()).get(0));
     }
 
     public User findUserByPassport(String passport) {
-        User result = new User();
-        for (User us : treemap.keySet()) {
-            if  (us.getPassport().equals(passport)) {
-                result = us;
-            }
-        }
-        return result;
+        return new ArrayList<User>(treemap.keySet()).stream().
+                filter(user -> user.getPassport().contains(passport)).collect(Collectors.toList()).get(0);
     }
 
     public User findUserByReq(String requisite) {
-        Account targetAccount = new Account(0, "");
         User result = new User();
 
-        for (ArrayList<Account> acc : treemap.values()) {
-            for (Account accountUser : acc) {
-                if (accountUser.getReqs() == requisite) {
-                    targetAccount = accountUser;
-                }
-            }
-        }
+        Account targetAccount  = treemap.values().stream().flatMap(Collection::stream).
+                filter(account -> account.getReqs().contains(requisite)).collect(Collectors.toList()).get(0);
+
         for (User us : treemap.keySet()) {
             ArrayList<Account> listAccountUser = this.treemap.get(us);
             for (Account accountOfUser : listAccountUser) {
@@ -84,19 +77,14 @@ public class Bank {
     }
 
     public Account getAccountByRequisiteFromUserPassport(String passport, String requisite) {
-        Account result = new Account(0, "0");
-        for (Account acc : getAccounts(findUserByPassport(passport))) {
-            if (acc.getReqs() == requisite) {
-                result = acc;
-            }
-        }
-        return result;
+
+        return getAccounts(findUserByPassport(passport)).stream().
+                filter(account -> account.getReqs().contains(requisite)).
+                collect(Collectors.toList()).get(0);
     }
 
     public boolean transferMoney(String srcPassport, String srcRequisite, String destPassport, String dstRequisite, double amount) {
         boolean result = false;
-        //User usersrc = findUserByPassport(srcPassport);
-        //User userdst = findUserByPassport(destPassport);
         List<Account> listsrc = getUserAccounts(srcPassport);
         List<Account> listdest = getUserAccounts(destPassport);
         Account source = getAccountByRequisiteFromUserPassport(srcPassport, srcRequisite);
