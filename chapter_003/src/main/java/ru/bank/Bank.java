@@ -18,18 +18,10 @@ public class Bank {
     }
 
 
-
-
-
-
-
     public void addAccountToUser(String passport, Account account) {
         List<User> list = new ArrayList(treemap.keySet());
-        List<User> top = list.stream().filter(user -> user.getPassport().contains(passport)).collect(Collectors.toList());
-
-        for (User us : top) {
-                this.treemap.get(us).add(account);
-        }
+        User top = list.stream().filter(user -> user.getPassport().contains(passport)).findFirst().get();
+        this.treemap.get(top).add(account);
     }
 
     public void deleteAccountFromUser(String passport, Account account) {
@@ -43,19 +35,19 @@ public class Bank {
     public List<Account> getUserAccounts(String passport) {
 
         return this.treemap.get(new ArrayList<User>(treemap.keySet()).stream().
-                filter(user -> user.getPassport().contains(passport)).collect(Collectors.toList()).get(0));
+                filter(user -> user.getPassport().contains(passport)).findFirst().get());
     }
 
     public User findUserByPassport(String passport) {
         return new ArrayList<User>(treemap.keySet()).stream().
-                filter(user -> user.getPassport().contains(passport)).collect(Collectors.toList()).get(0);
+                filter(user -> user.getPassport().contains(passport)).findFirst().get();
     }
 
     public User findUserByReq(String requisite) {
         User result = new User();
 
         Account targetAccount  = treemap.values().stream().flatMap(Collection::stream).
-                filter(account -> account.getReqs().contains(requisite)).collect(Collectors.toList()).get(0);
+                filter(account -> account.getReqs().contains(requisite)).findFirst().get();
 
         for (User us : treemap.keySet()) {
             ArrayList<Account> listAccountUser = this.treemap.get(us);
@@ -80,17 +72,15 @@ public class Bank {
 
         return getAccounts(findUserByPassport(passport)).stream().
                 filter(account -> account.getReqs().contains(requisite)).
-                collect(Collectors.toList()).get(0);
+                findFirst().get();
     }
 
     public boolean transferMoney(String srcPassport, String srcRequisite, String destPassport, String dstRequisite, double amount) {
         boolean result = false;
-        List<Account> listsrc = getUserAccounts(srcPassport);
-        List<Account> listdest = getUserAccounts(destPassport);
         Account source = getAccountByRequisiteFromUserPassport(srcPassport, srcRequisite);
         Account destination = getAccountByRequisiteFromUserPassport(destPassport, dstRequisite);
-        if (listsrc.contains(source) & listdest.contains(destination)) {
-           result = source.transfer(destination, amount);
+        if ((getUserAccounts(srcPassport)).contains(source) & (getUserAccounts(destPassport)).contains(destination)) {
+            result = source.transfer(destination, amount);
 
         }
         return result;
