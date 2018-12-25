@@ -17,6 +17,8 @@ public class PriorityQueue {
         return this.tasks.poll();
     }
     public void print() {
-        for(Task ts : tasks){System.out.println("Печатаем элементы очереди " + ts.getDesc());}
+        for (Task ts : tasks) {
+            System.out.println("Печатаем элементы очереди " + ts.getDesc());
+        }
     }
 }

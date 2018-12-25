@@ -17,7 +17,7 @@ public class ConvertList2Array {
 
         int[] intArray2 = Arrays.stream(rt2.toArray(new Integer[rows])).mapToInt(Integer::intValue).toArray();
 
-        List<Integer> rt3 = list.stream().skip(rows*2).limit(rows).collect(Collectors.toList());
+        List<Integer> rt3 = list.stream().skip(rows * 2).limit(rows).collect(Collectors.toList());
         int[] intArray3 = Arrays.stream(rt3.toArray(new Integer[rt3.size()])).mapToInt(Integer::intValue).toArray();
 
         System.arraycopy(intArray, 0, array[0], 0, intArray.length);
@@ -27,8 +27,8 @@ public class ConvertList2Array {
     }
     public List<Integer> convert(List<int[]> list) {
 
-        List<Integer> result  = Arrays.stream( list.stream().findFirst().get() ).boxed().collect( Collectors.toList() );
-        result.addAll(Arrays.stream( list.stream().skip(1).findAny().get() ).boxed().collect( Collectors.toList() ));
+        List<Integer> result  = Arrays.stream(list.stream().findFirst().get()).boxed().collect(Collectors.toList());
+        result.addAll(Arrays.stream(list.stream().skip(1).findAny().get()).boxed().collect(Collectors.toList()));
         return result;
     }
 

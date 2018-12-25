@@ -2,13 +2,14 @@
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
-<span class="fc" id="L6">public class PhoneDictionary {</span>
-<span class="fc" id="L7">    private List&lt;Person&gt; persons = new ArrayList&lt;Person&gt;();</span>
+<span class="fc" id="L7">public class PhoneDictionary {</span>
+<span class="fc" id="L8">    private List&lt;Person&gt; persons = new ArrayList&lt;Person&gt;();</span>
 
     public void add(Person person) {
-<span class="fc" id="L10">        this.persons.add(person);</span>
-<span class="fc" id="L11">    }</span>
+<span class="fc" id="L11">        this.persons.add(person);</span>
+<span class="fc" id="L12">    }</span>
 
     /**
      * Вернуть список всех пользователей, который содержат key в любых полях.
@@ -16,12 +17,11 @@ import java.util.List;
      * @return Список подощедщих пользователей.
      */
     public List&lt;Person&gt; find(String key) {
-<span class="fc" id="L19">        List&lt;Person&gt; result = new ArrayList&lt;&gt;();</span>
-<span class="fc bfc" id="L20" title="All 2 branches covered.">        for (Person s: persons) {</span>
-<span class="pc bpc" id="L21" title="1 of 2 branches missed.">            if (s.getName().contains(key) | s.getAddress().contains(key) | s.getPhone().contains(key) | s.getSurname().contains(key)) {</span>
-<span class="fc" id="L22">                result.add(s);</span>
-            }
-<span class="fc" id="L24">        }</span>
+
+<span class="fc" id="L21">        List&lt;Person&gt; result = persons.stream().filter(</span>
+<span class="fc" id="L22">                person -&gt; person.name.contains(key) | person.address.contains(key) | person.surname.contains(key) | person.phone.contains(key)</span>
+<span class="fc" id="L23">        ).collect(Collectors.toList());</span>
+
 <span class="fc" id="L25">        return result;</span>
     }
 }

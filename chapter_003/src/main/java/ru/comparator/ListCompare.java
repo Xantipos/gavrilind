@@ -13,8 +13,12 @@ public class ListCompare implements Comparator<String> {
 
         List<String> tasks = Arrays.asList(left, right);
         String top = tasks.stream().max(String::compareTo).get();
-        if (top.equals(left) && !right.equals(left)) {result = 1;}
-        if (top.equals(right) && !right.equals(left)) {result = -1;}
+        if (top.equals(left) && !right.equals(left)) {
+            result = 1;
+        }
+        if (top.equals(right) && !right.equals(left)) {
+            result = -1;
+        }
         return result;
     }
 }

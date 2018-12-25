@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ru"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Bank.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">chapter_003</a> &gt; <a href="index.source.html" class="el_package">ru.bank</a> &gt; <span class="el_source">Bank.java</span></div><h1>Bank.java</h1><pre class="source lang-java linenums">package ru.bank;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.TreeMap;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
-<span class="fc" id="L8">public class Bank {</span>
 
-<span class="fc" id="L10">    private TreeMap&lt;User, ArrayList&lt;Account&gt;&gt; treemap = new TreeMap&lt;&gt;();</span>
+<span class="fc" id="L7">public class Bank {</span>
+
+<span class="fc" id="L9">    public TreeMap&lt;User, ArrayList&lt;Account&gt;&gt; treemap = new TreeMap&lt;&gt;();</span>
+
 
     public void addUser(User user) {
 <span class="fc" id="L13">        this.treemap.put(user, new ArrayList&lt;Account&gt;());</span>
@@ -17,99 +17,77 @@ import java.util.Map;
 <span class="nc" id="L17">        this.treemap.remove(user);</span>
 <span class="nc" id="L18">    }</span>
 
+
     public void addAccountToUser(String passport, Account account) {
-<span class="fc bfc" id="L21" title="All 2 branches covered.">        for (User us : treemap.keySet()) {</span>
-<span class="fc bfc" id="L22" title="All 2 branches covered.">            if  (us.getPassport().equals(passport)) {</span>
-<span class="fc" id="L23">                this.treemap.get(us).add(account);</span>
-            }
-<span class="fc" id="L25">        }</span>
-<span class="fc" id="L26">    }</span>
+<span class="fc" id="L22">        List&lt;User&gt; list = new ArrayList(treemap.keySet());</span>
+<span class="fc" id="L23">        User top = list.stream().filter(user -&gt; user.getPassport().contains(passport)).findFirst().get();</span>
+<span class="fc" id="L24">        this.treemap.get(top).add(account);</span>
+<span class="fc" id="L25">    }</span>
 
     public void deleteAccountFromUser(String passport, Account account) {
-<span class="nc bnc" id="L29" title="All 2 branches missed.">        for (User us : treemap.keySet()) {</span>
-<span class="nc bnc" id="L30" title="All 2 branches missed.">            if  (us.getPassport().equals(passport)) {</span>
-<span class="nc" id="L31">                this.treemap.get(us).remove(account);</span>
+<span class="nc bnc" id="L28" title="All 2 branches missed.">        for (User us : treemap.keySet()) {</span>
+<span class="nc bnc" id="L29" title="All 2 branches missed.">            if  (us.getPassport().equals(passport)) {</span>
+<span class="nc" id="L30">                this.treemap.get(us).remove(account);</span>
             }
-<span class="nc" id="L33">        }</span>
-<span class="nc" id="L34">    }</span>
+<span class="nc" id="L32">        }</span>
+<span class="nc" id="L33">    }</span>
 
     public List&lt;Account&gt; getUserAccounts(String passport) {
-<span class="fc" id="L37">        List&lt;Account&gt; result = new ArrayList&lt;&gt;();</span>
-<span class="fc bfc" id="L38" title="All 2 branches covered.">        for (User us : treemap.keySet()) {</span>
-<span class="fc bfc" id="L39" title="All 2 branches covered.">            if  (us.getPassport().equals(passport)) {</span>
-<span class="fc" id="L40">                result = this.treemap.get(us);</span>
-            }
-<span class="fc" id="L42">        }</span>
-<span class="fc" id="L43">        return result;</span>
+
+<span class="fc" id="L37">        return this.treemap.get(new ArrayList&lt;User&gt;(treemap.keySet()).stream().</span>
+<span class="fc" id="L38">                filter(user -&gt; user.getPassport().contains(passport)).findFirst().get());</span>
     }
 
     public User findUserByPassport(String passport) {
-<span class="fc" id="L47">        User result = new User();</span>
-<span class="fc bfc" id="L48" title="All 2 branches covered.">        for (User us : treemap.keySet()) {</span>
-<span class="fc bfc" id="L49" title="All 2 branches covered.">            if  (us.getPassport().equals(passport)) {</span>
-<span class="fc" id="L50">                result = us;</span>
-            }
-<span class="fc" id="L52">        }</span>
-<span class="fc" id="L53">        return result;</span>
+<span class="fc" id="L42">        return new ArrayList&lt;User&gt;(treemap.keySet()).stream().</span>
+<span class="fc" id="L43">                filter(user -&gt; user.getPassport().contains(passport)).findFirst().get();</span>
     }
 
     public User findUserByReq(String requisite) {
-<span class="nc" id="L57">        Account targetAccount = new Account(0, &quot;&quot;);</span>
-<span class="nc" id="L58">        User result = new User();</span>
+<span class="nc" id="L47">        User result = new User();</span>
 
-<span class="nc bnc" id="L60" title="All 2 branches missed.">        for (ArrayList&lt;Account&gt; acc : treemap.values()) {</span>
-<span class="nc bnc" id="L61" title="All 2 branches missed.">            for (Account accountUser : acc) {</span>
-<span class="nc bnc" id="L62" title="All 2 branches missed.">                if (accountUser.getReqs() == requisite) {</span>
-<span class="nc" id="L63">                    targetAccount = accountUser;</span>
+<span class="nc" id="L49">        Account targetAccount  = treemap.values().stream().flatMap(Collection::stream).</span>
+<span class="nc" id="L50">                filter(account -&gt; account.getReqs().contains(requisite)).findFirst().get();</span>
+
+<span class="nc bnc" id="L52" title="All 2 branches missed.">        for (User us : treemap.keySet()) {</span>
+<span class="nc" id="L53">            ArrayList&lt;Account&gt; listAccountUser = this.treemap.get(us);</span>
+<span class="nc bnc" id="L54" title="All 2 branches missed.">            for (Account accountOfUser : listAccountUser) {</span>
+<span class="nc bnc" id="L55" title="All 2 branches missed.">                if (accountOfUser == targetAccount) {</span>
+<span class="nc" id="L56">                    result = us;</span>
                 }
-<span class="nc" id="L65">            }</span>
-<span class="nc" id="L66">        }</span>
-<span class="nc bnc" id="L67" title="All 2 branches missed.">        for (User us : treemap.keySet()) {</span>
-<span class="nc" id="L68">            ArrayList&lt;Account&gt; listAccountUser = this.treemap.get(us);</span>
-<span class="nc bnc" id="L69" title="All 2 branches missed.">            for (Account accountOfUser : listAccountUser) {</span>
-<span class="nc bnc" id="L70" title="All 2 branches missed.">                if (accountOfUser == targetAccount) {</span>
-<span class="nc" id="L71">                    result = us;</span>
-                }
-<span class="nc" id="L73">            }</span>
-<span class="nc" id="L74">        }</span>
-<span class="nc" id="L75">        return result;</span>
+<span class="nc" id="L58">            }</span>
+<span class="nc" id="L59">        }</span>
+<span class="nc" id="L60">        return result;</span>
     }
 
     public void deleteAccount(User user, Account account) {
-<span class="nc" id="L79">        this.treemap.get(user).remove(account);</span>
-<span class="nc" id="L80">    }</span>
+<span class="nc" id="L64">        this.treemap.get(user).remove(account);</span>
+<span class="nc" id="L65">    }</span>
 
     public List&lt;Account&gt; getAccounts(User user) {
-<span class="fc" id="L83">        return this.treemap.get(user);</span>
+<span class="fc" id="L68">        return this.treemap.get(user);</span>
     }
 
     public Account getAccountByRequisiteFromUserPassport(String passport, String requisite) {
-<span class="fc" id="L87">        Account result = new Account(0, &quot;0&quot;);</span>
-<span class="fc bfc" id="L88" title="All 2 branches covered.">        for (Account acc : getAccounts(findUserByPassport(passport))) {</span>
-<span class="pc bpc" id="L89" title="1 of 2 branches missed.">            if (acc.getReqs() == requisite) {</span>
-<span class="fc" id="L90">                result = acc;</span>
-            }
-<span class="fc" id="L92">        }</span>
-<span class="fc" id="L93">        return result;</span>
+
+<span class="fc" id="L73">        return getAccounts(findUserByPassport(passport)).stream().</span>
+<span class="fc" id="L74">                filter(account -&gt; account.getReqs().contains(requisite)).</span>
+<span class="fc" id="L75">                findFirst().get();</span>
     }
 
     public boolean transferMoney(String srcPassport, String srcRequisite, String destPassport, String dstRequisite, double amount) {
-<span class="fc" id="L97">        boolean result = false;</span>
-        //User usersrc = findUserByPassport(srcPassport);
-        //User userdst = findUserByPassport(destPassport);
-<span class="fc" id="L100">        List&lt;Account&gt; listsrc = getUserAccounts(srcPassport);</span>
-<span class="fc" id="L101">        List&lt;Account&gt; listdest = getUserAccounts(destPassport);</span>
-<span class="fc" id="L102">        Account source = getAccountByRequisiteFromUserPassport(srcPassport, srcRequisite);</span>
-<span class="fc" id="L103">        Account destination = getAccountByRequisiteFromUserPassport(destPassport, dstRequisite);</span>
-<span class="pc bpc" id="L104" title="1 of 2 branches missed.">        if (listsrc.contains(source) &amp; listdest.contains(destination)) {</span>
-<span class="fc" id="L105">           result = source.transfer(destination, amount);</span>
+<span class="fc" id="L79">        boolean result = false;</span>
+<span class="fc" id="L80">        Account source = getAccountByRequisiteFromUserPassport(srcPassport, srcRequisite);</span>
+<span class="fc" id="L81">        Account destination = getAccountByRequisiteFromUserPassport(destPassport, dstRequisite);</span>
+<span class="pc bpc" id="L82" title="1 of 2 branches missed.">        if ((getUserAccounts(srcPassport)).contains(source) &amp; (getUserAccounts(destPassport)).contains(destination)) {</span>
+<span class="fc" id="L83">            result = source.transfer(destination, amount);</span>
 
         }
-<span class="fc" id="L108">        return result;</span>
+<span class="fc" id="L86">        return result;</span>
     }
 
     public String answer() {
-<span class="nc" id="L112">        return &quot;Bank{&quot; + &quot;accounts=&quot; + treemap + &quot;}&quot;;</span>
+<span class="nc" id="L90">        return &quot;Bank{&quot; + &quot;accounts=&quot; + treemap + &quot;}&quot;;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>
