@@ -78,12 +78,11 @@ public class Bank {
     public boolean transferMoney(String srcPassport, String srcRequisite, String destPassport, String dstRequisite, double amount) {
         boolean result = false;
         Account source = getAccountByRequisiteFromUserPassport(srcPassport, srcRequisite);
-        Account destination = getAccountByRequisiteFromUserPassport(destPassport, dstRequisite);
-        if ((getUserAccounts(srcPassport)).contains(source) & (getUserAccounts(destPassport)).contains(destination)) {
-            result = source.transfer(destination, amount);
-
+        if (source != null) {
+            result = source.transfer(getAccountByRequisiteFromUserPassport(destPassport, dstRequisite), amount);
         }
         return result;
+
     }
 
     public String answer() {
