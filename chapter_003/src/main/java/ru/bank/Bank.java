@@ -38,14 +38,13 @@ public class Bank {
                 filter(user -> user.getPassport().contains(passport)).findFirst().get());
     }
 
-    public User findUserByPassport(String passport) {
+    public Optional <User> findUserByPassport(String passport) {
         return new ArrayList<User>(treemap.keySet()).stream().
-                filter(user -> user.getPassport().contains(passport)).findFirst().get();
+                filter(user -> user.getPassport().contains(passport)).findFirst();
     }
 
     public User findUserByReq(String requisite) {
         User result = new User();
-
         Account targetAccount  = treemap.values().stream().flatMap(Collection::stream).
                 filter(account -> account.getReqs().contains(requisite)).findFirst().get();
 
@@ -70,7 +69,7 @@ public class Bank {
 
     public Account getAccountByRequisiteFromUserPassport(String passport, String requisite) {
 
-        return getAccounts(findUserByPassport(passport)).stream().
+        return getAccounts(findUserByPassport(passport).get()).stream().
                 filter(account -> account.getReqs().contains(requisite)).
                 findFirst().get();
     }
