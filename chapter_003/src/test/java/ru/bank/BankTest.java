@@ -15,7 +15,7 @@ public class BankTest {
         bank.addUser(dm2);
         bank.addAccountToUser("4905",  new Account(1000000, "1234567890"));
         bank.addAccountToUser("4906",  new Account(3000000, "1234567891"));
-        User result = bank.findUserByPassport("4906");
+        User result = bank.findUserByPassport("4906").get();
         Assert.assertThat(result, is(dm2));
     }
     @Test
@@ -24,7 +24,7 @@ public class BankTest {
         User dm = new User("Dimon", "4905");
         bank.addUser(dm);
         bank.addAccountToUser("4905", new Account(1000000, "1234567890"));
-        User result = bank.findUserByPassport("4905");
+        User result = bank.findUserByPassport("4905").get();
         Assert.assertThat(result, is(dm));
     }
 

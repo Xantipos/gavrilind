@@ -8,7 +8,6 @@ public class Bank {
 
     public TreeMap<User, ArrayList<Account>> treemap = new TreeMap<>();
 
-
     public void addUser(User user) {
         this.treemap.put(user, new ArrayList<Account>());
     }
@@ -20,8 +19,10 @@ public class Bank {
 
     public void addAccountToUser(String passport, Account account) {
         List<User> list = new ArrayList(treemap.keySet());
-        User top = list.stream().filter(user -> user.getPassport().contains(passport)).findFirst().get();
-        this.treemap.get(top).add(account);
+        Optional<User> top = list.stream().filter(user -> user.getPassport().contains(passport)).findFirst();
+        if (top.isPresent()) {
+        this.treemap.get(top.get()).add(account);
+        }
     }
 
     public void deleteAccountFromUser(String passport, Account account) {
@@ -33,25 +34,33 @@ public class Bank {
     }
 
     public List<Account> getUserAccounts(String passport) {
-
-        return this.treemap.get(new ArrayList<User>(treemap.keySet()).stream().
-                filter(user -> user.getPassport().contains(passport)).findFirst().get());
+        List<Account> result = new ArrayList<Account>();
+        Optional<User> acc = treemap.keySet().stream().
+                filter(user -> user.getPassport().contains(passport)).findFirst();
+        if (acc.isPresent()) result = this.treemap.get(acc.get());
+        return result;
     }
 
     public Optional <User> findUserByPassport(String passport) {
-        return new ArrayList<User>(treemap.keySet()).stream().
+        Optional<User> result = Optional.empty();
+            Optional<User> arr = (treemap.keySet()).stream().
                 filter(user -> user.getPassport().contains(passport)).findFirst();
+            if (arr.isPresent()){
+                result = arr;
+            }
+            return result;
     }
 
     public User findUserByReq(String requisite) {
         User result = new User();
-        Account targetAccount  = treemap.values().stream().flatMap(Collection::stream).
-                filter(account -> account.getReqs().contains(requisite)).findFirst().get();
-
+        Optional<Account> targetAccount = Optional.empty();
+        Optional<Account> targetTemp  = treemap.values().stream().flatMap(Collection::stream).
+                filter(account -> account.getReqs().contains(requisite)).findFirst();
+        if (targetTemp.isPresent()) targetAccount = targetTemp;
         for (User us : treemap.keySet()) {
             ArrayList<Account> listAccountUser = this.treemap.get(us);
             for (Account accountOfUser : listAccountUser) {
-                if (accountOfUser == targetAccount) {
+                if (accountOfUser == targetAccount.get()) {
                     result = us;
                 }
             }
@@ -67,18 +76,23 @@ public class Bank {
         return this.treemap.get(user);
     }
 
-    public Account getAccountByRequisiteFromUserPassport(String passport, String requisite) {
-
-        return getAccounts(findUserByPassport(passport).get()).stream().
+    public Optional<Account> getAccountByRequisiteFromUserPassport(String passport, String requisite) {
+        Optional<User> user = findUserByPassport(passport);
+        Optional<Account> acc = Optional.empty();
+        if (user.isPresent()){
+        acc = getAccounts(findUserByPassport(passport).get()).stream().
                 filter(account -> account.getReqs().contains(requisite)).
-                findFirst().get();
+                findFirst();
+        }
+        return acc;
     }
 
     public boolean transferMoney(String srcPassport, String srcRequisite, String destPassport, String dstRequisite, double amount) {
         boolean result = false;
-        Account source = getAccountByRequisiteFromUserPassport(srcPassport, srcRequisite);
-        if (source != null) {
-            result = source.transfer(getAccountByRequisiteFromUserPassport(destPassport, dstRequisite), amount);
+        Optional<Account> source = getAccountByRequisiteFromUserPassport(srcPassport, srcRequisite);
+        Optional<Account> dest = getAccountByRequisiteFromUserPassport(destPassport, dstRequisite);
+        if (source.isPresent() & dest.isPresent()) {
+            result = source.get().transfer(dest.get(), amount);
         }
         return result;
 
