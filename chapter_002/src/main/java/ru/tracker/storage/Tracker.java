@@ -2,6 +2,8 @@ package ru.tracker.storage;
 import ru.tracker.model.Item;
 
 import java.util.*;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 /**
  * @version $Id$
@@ -54,21 +56,19 @@ public class Tracker {
     }
 
     public List<Item> findByName(String key) {
-        List<Item> resultname = new ArrayList<>(100);
-        for (int i = 0; i < items.size(); i++) {
-            if (items.get(i).getName().equals(key)) {
-                resultname.add(items.get(i));
-            }
-        }
-        return  resultname;
+
+        return items.stream()
+                .filter(Item -> Item.getName().contains(key))
+                .collect(Collectors.toList());
     }
 
     public Item findById(String id) {
         Item result = null;
-        for (int i = 0; i < items.size(); i++) {
-            if (items.get(i).getId().equals(id)) {
-                result = items.get(i);
-            }
+        Optional<Item> temp = items.stream()
+                .filter(Item -> Item.getId().contains(id))
+                .findFirst();
+        if (temp.isPresent()) {
+            result = temp.get();
         }
         return result;
     }
