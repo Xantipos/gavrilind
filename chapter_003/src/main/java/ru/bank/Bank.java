@@ -34,7 +34,7 @@ public class Bank {
     }
 
     public List<Account> getUserAccounts(String passport) {
-        List<Account> result = new ArrayList<Account>();
+        List<Account> result = null;
         Optional<User> acc = treemap.keySet().stream().
                 filter(user -> user.getPassport().contains(passport)).findFirst();
         if (acc.isPresent()) result = this.treemap.get(acc.get());
@@ -91,7 +91,7 @@ public class Bank {
         boolean result = false;
         Optional<Account> source = getAccountByRequisiteFromUserPassport(srcPassport, srcRequisite);
         Optional<Account> dest = getAccountByRequisiteFromUserPassport(destPassport, dstRequisite);
-        if (source.isPresent() & dest.isPresent()) {
+        if (source.isPresent() && dest.isPresent()) {
             result = source.get().transfer(dest.get(), amount);
         }
         return result;
