@@ -6,7 +6,10 @@ import ru.chess.firuges.Figure;
 import ru.tracker.input.MenuOutException;
 
 import java.security.InvalidKeyException;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.IntStream;
 
 /**
  * //TODO add comments.
@@ -60,12 +63,19 @@ public class Logic {
 
     private int findBy(Cell cell) {
         int rst = -1;
-        for (int index = 0; index != this.figures.length; index++) {
-            if (this.figures[index] != null && this.figures[index].position().equals(cell)) {
-                rst = index;
-                break;
-            }
+        List<Figure> list = Arrays.asList(this.figures);
+        Optional<Figure> res = list.stream().filter(figure -> figure.position().equals(cell)).findFirst();
+
+        if (res.isPresent()) {
+            rst = list.indexOf(res.get());
         }
+       // for (int index = 0; index != this.figures.length; index++) {
+         //   if (this.figures[index] != null && this.figures[index].position().equals(cell)) {
+              //  rst = index;
+               // System.out.println("Index from for =  " + index);
+               // break;
+           // }
+      //  }
         return rst;
     }
 }
