@@ -28,12 +28,14 @@ public class Logic {
 
     public boolean validateWay(Cell[] steps) {
         boolean result = true;
-        for (int i = 0; i < steps.length; i++) {
-            if  (this.findBy(steps[i]) != -1) {
-                result = false;
-                break;
-            }
-        }
+        Optional<Cell> res = Arrays.stream(steps).filter(s -> this.findBy(s) != -1).findFirst();
+        if (res.isPresent()) result = false;
+       // for (int i = 0; i < steps.length; i++) {
+       //     if  (this.findBy(steps[i]) != -1) {
+        //        result = false;
+        //        break;
+        //    }
+      //  }
         return result;
     }
 
@@ -69,13 +71,6 @@ public class Logic {
         if (res.isPresent()) {
             rst = list.indexOf(res.get());
         }
-       // for (int index = 0; index != this.figures.length; index++) {
-         //   if (this.figures[index] != null && this.figures[index].position().equals(cell)) {
-              //  rst = index;
-               // System.out.println("Index from for =  " + index);
-               // break;
-           // }
-      //  }
         return rst;
     }
 }
