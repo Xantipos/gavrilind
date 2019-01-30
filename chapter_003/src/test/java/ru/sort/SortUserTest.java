@@ -17,22 +17,17 @@ public class SortUserTest {
     @Test
     public void list3users() {
         SortUser usersort = new SortUser();
-        List<ru.sort.User> listus = new ArrayList<ru.sort.User>();
-        ru.sort.User dimon = new ru.sort.User("Dimon", 29);
-        ru.sort.User kolyamba = new ru.sort.User("Kolyamba", 28);
-        ru.sort.User ksushaKot = new ru.sort.User("ksushaKot", 27);
-
-        listus.add(dimon);
-        listus.add(kolyamba);
-        listus.add(ksushaKot);
-
+        List<ru.sort.User> listus = List.of(new ru.sort.User("Dimon", 29),
+                new ru.sort.User("Kolyamba", 28),
+                new ru.sort.User("ksushaKot", 27));
         Set<User> result = usersort.sort(listus);
 
 
-        Set<User> expect = new TreeSet<User>();
-        expect.add(ksushaKot);
-        expect.add(kolyamba);
-        expect.add(dimon);
+        Set<User> expect  = Set.of(
+                new User("ksushaKot", 27),
+                new User("Kolyamba", 28),
+                new User("Dimon", 29)
+        );
         assertThat(result, is(expect));
     }
 
