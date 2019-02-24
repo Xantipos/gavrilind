@@ -6,7 +6,6 @@ import java.util.stream.Collectors;
 
 public class PhoneDictionary {
     private List<Person> persons = new ArrayList<Person>();
-
     public void add(Person person) {
         this.persons.add(person);
     }
@@ -17,8 +16,7 @@ public class PhoneDictionary {
      * @return Список подощедщих пользователей.
      */
     public List<Person> find(String key) {
-
-        List<Person> result = persons.stream().filter(
+        var result = persons.stream().filter(
                 person -> person.name.contains(key) | person.address.contains(key) | person.surname.contains(key) | person.phone.contains(key)
         ).collect(Collectors.toList());
 

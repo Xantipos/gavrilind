@@ -46,5 +46,10 @@ public class StreamUsage {
         ).reduce(0L, Long::sum);
 
         System.out.println("Сумма тотал " + total);
+
+        List.of(2, 4, 3, 4).stream()
+                .takeWhile(v -> v % 2 == 0)
+                .map(v -> String.format(" %s", v))
+                .forEach(System.out::print);
     }
 }
